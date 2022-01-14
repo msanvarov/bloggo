@@ -2,6 +2,7 @@ const { createGlobPatternsForDependencies } = require('@nrwl/react/tailwind');
 const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors');
 
+// Helper function to grab theme colors from variables
 const customColors =
   (cssVar) =>
   ({ opacityVariable, opacityValue }) => {
