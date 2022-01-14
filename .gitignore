@@ -1,39 +1,60 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
 
-# compiled output
-/dist
-/tmp
-/out-tsc
+# Thumbnails
+._*
 
-# dependencies
-/node_modules
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
 
-# IDEs and editors
-/.idea
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
 
-# IDE - VSCode
+### NextJS ###
+.next/
+
+### React ###
+.DS_*
+*.log
+logs
+**/*.backup.*
+**/*.back.*
+
+node_modules
+bower_components
+psd
+thumb
+yarn.lock
+package-lock.json
+
+### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+!.vscode/*.code-snippets
 
-# misc
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
-/typings
+# Local History for Visual Studio Code
+.history/
 
-# System Files
-.DS_Store
-Thumbs.db
+# Built Visual Studio Code Extensions
+*.vsix
+
+### VisualStudioCode Patch ###
+.history
+.ionide
+
