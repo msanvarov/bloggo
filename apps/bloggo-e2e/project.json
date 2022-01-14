@@ -1,0 +1,28 @@
+{
+  "root": "apps/bloggo-e2e",
+  "sourceRoot": "apps/bloggo-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/bloggo-e2e/cypress.json",
+        "devServerTarget": "bloggo:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "bloggo:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/bloggo-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["bloggo"]
+}
