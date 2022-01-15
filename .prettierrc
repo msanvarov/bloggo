@@ -1,3 +1,9 @@
 {
-  "singleQuote": true
+  "printWidth": 80,
+  "trailingComma": "all",
+  "singleQuote": true,
+  "semi": true,
+  "importOrder": ["^@bloggo/(.*)$", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }
