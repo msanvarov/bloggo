@@ -2,10 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "_theme-variables";
-@import "_polyfills";
-// external deps
-@import "~@glidejs/glide/src/assets/sass/glide.core";
+@import "fonts";
+@import "theme-variables";
+@import "polyfills";
 
 .root {
     overflow: hidden;
