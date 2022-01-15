@@ -12,7 +12,7 @@ export interface INavEntry {
   href: string;
   targetBlank?: boolean;
   children?: INavEntry[];
-  type?: 'dropdown' | 'none';
+  type?: 'dropdown';
 }
 
 export interface NavigationEntryProps {

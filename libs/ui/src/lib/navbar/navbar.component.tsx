@@ -1,7 +1,9 @@
 import classNames from 'classnames';
 
+import { Button } from '../buttons';
 import { DarkModeToggleContainer } from '../dark-mode-toggle';
 import { Logo } from '../logo.component';
+import { MenuBar } from '../menu-bar.component';
 import { SearchDropdown } from '../search-dropdown.component';
 import './navbar.module.scss';
 import { Navigation } from './navigation.component';
@@ -14,9 +16,9 @@ export interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ isTopOfPage }) => {
   return (
     <div
-      className={classNames('.nc-MainNav', 'relative', 'z-10', {
+      className={classNames('main-nav', 'relative', 'z-10', {
         onTop: isTopOfPage,
-        'notOnTop backdrop-filter': isTopOfPage,
+        'not-on-top backdrop-filter': isTopOfPage,
       })}
     >
       <div className="container py-5 relative flex justify-between items-center space-x-4 xl:space-x-8">
@@ -29,9 +31,13 @@ export const Navbar: React.FC<NavbarProps> = ({ isTopOfPage }) => {
             <DarkModeToggleContainer />
             <SearchDropdown />
             <div className="px-1" />
-            {/* <ButtonPrimary href="/login">Sign up</ButtonPrimary> */}
+            <Button primary href="/login">
+              Login
+            </Button>
           </div>
-          <div className="flex items-center xl:hidden">{/* <MenuBar /> */}</div>
+          <div className="flex items-center xl:hidden">
+            <MenuBar />
+          </div>
         </div>
       </div>
     </div>

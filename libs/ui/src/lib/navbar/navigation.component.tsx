@@ -6,29 +6,6 @@ import { INavEntry, NavigationEntry } from './navigation-entry.component';
 
 const generateUUID = () => `nc_${nanoid()}`;
 
-const rootNavigationMenus: INavEntry[] = [
-  {
-    id: generateUUID(),
-    href: '/login',
-    name: 'Login',
-  },
-  {
-    id: generateUUID(),
-    href: '/register',
-    name: 'Register',
-  },
-  {
-    id: generateUUID(),
-    href: '/forgot-password',
-    name: 'Forgot Password',
-  },
-  {
-    id: generateUUID(),
-    href: '/contact',
-    name: 'Contact',
-  },
-];
-
 const dashboardNavigationMenus: INavEntry[] = [
   {
     id: generateUUID(),
@@ -47,14 +24,7 @@ const dashboardNavigationMenus: INavEntry[] = [
   },
 ];
 
-const navigationOptions: INavEntry[] = [
-  {
-    id: generateUUID(),
-    href: '/',
-    name: 'Main',
-    type: 'dropdown',
-    children: rootNavigationMenus,
-  },
+export const navigationOptions: INavEntry[] = [
   //   hidden menu options until authentication is completed
   {
     id: generateUUID(),
@@ -62,6 +32,11 @@ const navigationOptions: INavEntry[] = [
     name: 'Dashboard',
     type: 'dropdown',
     children: dashboardNavigationMenus,
+  },
+  {
+    id: generateUUID(),
+    href: '/contact',
+    name: 'Contact',
   },
 ];
 
