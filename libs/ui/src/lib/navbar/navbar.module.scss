@@ -1,5 +1,5 @@
-.nc-MainNav {
-    &.notOnTop {
+.main-nav {
+    &.not-on-top {
         @apply bg-white dark:bg-neutral-900 backdrop-blur-2xl bg-opacity-70 dark:bg-opacity-60 shadow-sm dark:border-b dark:border-neutral-700;
     }
 }
