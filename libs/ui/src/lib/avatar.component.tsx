@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 type AvatarProps = {
@@ -59,10 +60,11 @@ export const Avatar: React.FC<AvatarProps> = ({
       style={{ backgroundColor: url ? undefined : _setBgColor(name) }}
     >
       {url && (
-        <img
+        <Image
           className="absolute inset-0 w-full h-full object-cover"
           src={url}
           alt={name}
+          layout="fill"
         />
       )}
       <span className="wil-avatar__name">{name[0]}</span>

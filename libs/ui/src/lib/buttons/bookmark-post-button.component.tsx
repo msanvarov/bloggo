@@ -25,15 +25,15 @@ export const BookmarkPostButton: React.FC<BookmarkPostButtonProps> = ({
       setIsBookmarkPostButtonClicked(true);
     }
   };
+  console.log(postId);
   return (
     <button
       className={classnames(
-        'nc-NcBookmark relative rounded-full flex items-center justify-center',
+        'like-post-button',
+        'relative rounded-full flex items-center justify-center',
         'focus:outline-none',
         containerClassName,
       )}
-      data-nc-id="NcBookmark"
-      data-nc-bookmark-post-id={postId}
       onClick={handleOnBookmarkButtonClick}
       title="Save to reading list"
     >

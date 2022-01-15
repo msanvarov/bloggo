@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import React from 'react';
 import { FiFacebook, FiInstagram, FiLinkedin, FiTwitter } from 'react-icons/fi';
 
@@ -13,12 +14,14 @@ export interface ISocialMedia {
   href: string;
 }
 
+// these social media links are for the blog page
 const socials: ISocialMedia[] = [
   { id: 'Facebook', name: 'Facebook', icon: <FiFacebook />, href: '#' },
   { id: 'Twitter', name: 'Twitter', icon: <FiTwitter />, href: '#' },
   { id: 'Linkedin', name: 'Linkedin', icon: <FiLinkedin />, href: '#' },
   { id: 'Instagram', name: 'Instagram', icon: <FiInstagram />, href: '#' },
 ];
+
 export const SharePostButtonContainer: React.FC<
   SharePostButtonContainerProps
 > = ({
@@ -26,7 +29,7 @@ export const SharePostButtonContainer: React.FC<
   itemClass = 'w-7 h-7 text-base hover:bg-neutral-100',
 }) => {
   return (
-    <div className={`nc-SocialsShare ${className}`} data-nc-id="SocialsShare">
+    <div className={classnames(className)}>
       {socials.map((item, index) => (
         <a
           key={index}

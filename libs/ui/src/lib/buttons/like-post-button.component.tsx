@@ -52,7 +52,7 @@ export const LikePostButton: React.FC<LikePostButtonProps> = ({
   return (
     <button
       className={classnames(
-        'nc-PostCardLikeAction relative min-w-[68px] flex items-center rounded-full leading-none group transition-colors',
+        'relative min-w-[68px] flex items-center rounded-full leading-none group transition-colors',
         className,
         'focus:outline-none',
         {
@@ -63,7 +63,6 @@ export const LikePostButton: React.FC<LikePostButtonProps> = ({
       )}
       onClick={() => handleOnLikeButtonClick()}
       title="Liked"
-      data-nc-id="PostCardLikeAction"
     >
       <svg
         width="24"

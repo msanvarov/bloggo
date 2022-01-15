@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import React from 'react';
 
+// TODO: use Next Image component for logo
 export const Logo: React.FC = () => {
   return (
     <Link href="/">

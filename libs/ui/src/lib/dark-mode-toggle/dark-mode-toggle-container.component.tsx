@@ -2,7 +2,13 @@ import React, { useEffect, useState } from 'react';
 
 import { DarkModeSwitch } from './dark-mode-switch.component';
 
-export const DarkModeToggleContainer = () => {
+type DarkModeToggleContainerProps = {
+  className?: string;
+};
+
+export const DarkModeToggleContainer: React.FC<
+  DarkModeToggleContainerProps
+> = ({ className }) => {
   const [darkMode, setDarkMode] = useState<boolean>(false);
   useEffect(() => {
     const root = document.querySelector('html');
@@ -20,7 +26,7 @@ export const DarkModeToggleContainer = () => {
   return (
     <DarkModeSwitch
       {...{
-        className: undefined,
+        className,
         isDarkMode: darkMode,
         onClick: toggleDarkMode,
       }}

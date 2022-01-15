@@ -418,7 +418,7 @@ export const Header: React.FC = () => {
     // TODO: fetch blog data from firebase and populate this field
     const { title, author, id, bookmark } = SINGLE;
     return (
-      <div className="nc-SingleHeaderMenu dark relative py-4 bg-neutral-900 dark:bg-neutral-900">
+      <div className="dark relative py-4 bg-neutral-900 dark:bg-neutral-900">
         <div className="container">
           <div className="flex justify-end lg:justify-between">
             <div className="hidden lg:flex items-center mr-3">
@@ -458,7 +458,7 @@ export const Header: React.FC = () => {
   };
   return (
     <header
-      className="nc-Header nc-will-change-top sticky top-0 w-full left-0 right-0 z-40 transition-all"
+      className="nc-will-change-top sticky top-0 w-full left-0 right-0 z-40 transition-all"
       ref={containerDivElRef}
     >
       <div ref={mainMenuDivElRef}>
