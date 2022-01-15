@@ -9,8 +9,7 @@
       "defaultConfiguration": "production",
       "options": {
         "root": "apps/bloggo",
-        "outputPath": "dist/apps/bloggo",
-        "styles": ["apps/bloggo/src/styles/styles.scss"]
+        "outputPath": "dist/apps/bloggo"
       },
       "configurations": {
         "production": {}
