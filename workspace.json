@@ -2,6 +2,8 @@
   "version": 2,
   "projects": {
     "bloggo": "apps/bloggo",
-    "bloggo-e2e": "apps/bloggo-e2e"
+    "bloggo-e2e": "apps/bloggo-e2e",
+    "redux": "libs/redux",
+    "ui": "libs/ui"
   }
 }
