@@ -17,7 +17,7 @@ const customColors =
 
 module.exports = {
   mode: 'jit',
-  purge: createGlobPatternsForDependencies(__dirname),
+  content: createGlobPatternsForDependencies(__dirname),
   darkMode: 'class', // or 'media' or 'class',
   theme: {
     container: {
@@ -72,7 +72,6 @@ module.exports = {
         900: customColors('--c-neutral-900'),
       },
     },
-
     extend: {
       screens: {
         'dark-mode': { raw: '(prefers-color-scheme: dark)' },
