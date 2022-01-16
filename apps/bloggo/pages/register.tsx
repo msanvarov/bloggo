@@ -8,7 +8,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import * as Yup from 'yup';
 
-import { AppState, checkUsername, useAppSelector } from '@bloggo/redux';
+import {
+  AppState,
+  checkUsername,
+  createUsernameAndLinkToUser,
+  register,
+  useAppSelector,
+} from '@bloggo/redux';
 import {
   AppLayout,
   Button,
@@ -65,7 +71,24 @@ const RegisterPage: React.FC = () => {
     initialValues: { username: '', email: '', password: '' },
     onSubmit: async ({ username, email, password }) => {
       try {
-        console.log(username, email, password);
+        const user = await register(username, email, password);
+        createUsernameAndLinkToUser({
+          uid: user.uid,
+          username,
+          photoURL: user.photoURL,
+          displayName: user.displayName,
+        });
+
+        setToast({
+          isOpen: true,
+          toggle: () =>
+            setToast((prevToast) => ({ ...prevToast, isOpen: false })),
+          text: {
+            heading: 'Registration completed',
+            body: 'You have successfully registered to Bloggo. Welcome to the community!',
+          },
+          type: 'success',
+        });
       } catch (error) {
         setToast({
           isOpen: true,
@@ -84,8 +107,6 @@ const RegisterPage: React.FC = () => {
     },
   });
 
-  console.log(errors);
-
   // redirect to home page if user is logged in
   useEffect(() => {
     if (user) {
@@ -97,12 +118,13 @@ const RegisterPage: React.FC = () => {
     debounce(async (username) => {
       if (username.length >= 3) {
         const exists = await checkUsername(username);
-        console.log('Firestore read executed!');
+        console.log('Firestore read executed!', exists);
         exists && setFieldError('username', 'That username has been taken.');
       }
     }, 500),
     [],
   );
+
   return (
     <>
       <Head>
@@ -118,7 +140,7 @@ const RegisterPage: React.FC = () => {
             {oauthProviders.map((item, index) => (
               <a
                 key={index}
-                onClick={item.onClick}
+                onClick={() => item.onClick(() => router.replace('/enter'))}
                 className="nc-will-change-transform flex w-full rounded-lg bg-primary-50 dark:bg-neutral-800 px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]"
               >
                 <Image
@@ -231,7 +253,7 @@ const RegisterPage: React.FC = () => {
             <Button
               primary
               type="submit"
-              disabled={Object.keys(errors).length === 0}
+              //   disabled={Object.keys(errors).length === 0}
             >
               Continue
             </Button>

@@ -27,8 +27,9 @@ export const oauthProviders = [
   {
     name: 'Continue with Google',
     icon: '/google.svg',
-    onClick: () => {
-      loginWithGoogleProvider();
+    onClick: async (cb: () => void) => {
+      await loginWithGoogleProvider();
+      cb();
     },
   },
 ];
@@ -81,7 +82,7 @@ const LoginPage: React.FC = () => {
             setToast((prevToast) => ({ ...prevToast, isOpen: false })),
           text: {
             heading: 'Login completed',
-            body: 'You have successfully logged in.',
+            body: 'You have successfully logged in. Welcome back!',
           },
           type: 'success',
         });
@@ -125,7 +126,7 @@ const LoginPage: React.FC = () => {
             {oauthProviders.map((item, index) => (
               <a
                 key={index}
-                onClick={item.onClick}
+                onClick={() => item.onClick(() => router.replace('/enter'))}
                 className="nc-will-change-transform flex w-full rounded-lg bg-primary-50 dark:bg-neutral-800 px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]"
               >
                 <Image
