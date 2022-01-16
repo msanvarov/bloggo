@@ -1,15 +1,14 @@
 export interface IUserState {
-  user?: Partial<IUser>;
-  username?: string;
+  user?: Partial<IUser> | null;
+  username?: string | null;
 }
 
 export interface IUser {
   uid: string;
-  email: string;
+  email: string | null;
   emailVerified: boolean;
-  isAnonymous: boolean;
-  displayName: string;
-  photoURL: string;
-  createdAt: string;
-  lastLoginAt: string;
+  displayName: string | null;
+  photoURL: string | null;
+  createdAt?: string;
+  lastLoginAt?: string;
 }
