@@ -13,4 +13,5 @@ export * from './lib/footer.component';
 // folder modules
 export * from './lib/navbar';
 export * from './lib/buttons';
+export * from './lib/forms';
 export * from './lib/dark-mode-toggle';
