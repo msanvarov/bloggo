@@ -25,6 +25,7 @@ Temporary Items
 
 ### NextJS ###
 .next/
+dist/*
 
 ### React ###
 .DS_*
