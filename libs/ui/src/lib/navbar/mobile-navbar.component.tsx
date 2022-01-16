@@ -143,7 +143,7 @@ export const MobileNavbar: React.FC<MobileNavbarProps> = ({
       </ul>
       <div className="flex items-center justify-between py-6 px-5 space-x-4">
         <a href="/#" target="_blank" rel="noopener noreferrer">
-          <Button primary>Github</Button>
+          <Button primary>Login</Button>
         </a>
       </div>
     </div>
