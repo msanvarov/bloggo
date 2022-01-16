@@ -52,9 +52,7 @@ export const NavigationEntry: React.FC<NavigationEntryProps> = ({
       >
         {() => (
           <>
-            <Popover.Button as={Fragment}>
-              {renderMainMenu(entry)}
-            </Popover.Button>
+            <Popover.Button>{renderMainMenu(entry)}</Popover.Button>
             <Transition
               as={Fragment}
               show={isHover}
