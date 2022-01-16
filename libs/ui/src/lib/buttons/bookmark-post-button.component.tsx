@@ -25,7 +25,7 @@ export const BookmarkPostButton: React.FC<BookmarkPostButtonProps> = ({
       setIsBookmarkPostButtonClicked(true);
     }
   };
-  console.log(postId);
+
   return (
     <button
       className={classnames(
