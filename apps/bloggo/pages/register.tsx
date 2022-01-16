@@ -1,18 +1,14 @@
 import classnames from 'classnames';
 import { useFormik } from 'formik';
+import { debounce } from 'lodash';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
 import * as Yup from 'yup';
 
-import {
-  AppState,
-  login,
-  loginWithGoogleProvider,
-  useAppSelector,
-} from '@bloggo/redux';
+import { AppState, checkUsername, useAppSelector } from '@bloggo/redux';
 import {
   AppLayout,
   Button,
@@ -23,17 +19,12 @@ import {
   ToastProps,
 } from '@bloggo/ui';
 
-export const oauthProviders = [
-  {
-    name: 'Continue with Google',
-    icon: '/google.svg',
-    onClick: () => {
-      loginWithGoogleProvider();
-    },
-  },
-];
+import { oauthProviders } from './login';
 
-const LoginSchema = Yup.object().shape({
+const RegisterSchema = Yup.object().shape({
+  username: Yup.string()
+    .min(3, 'Username is too short.')
+    .required('Username is required.'),
   email: Yup.string()
     .email('Email must be valid.')
     .required('Email field is required.'),
@@ -47,8 +38,7 @@ const LoginSchema = Yup.object().shape({
     .required('Password field is required.'),
 });
 
-// TODO: provide a default account for users to test with (set initial values for formik with actual login credentials)
-const LoginPage: React.FC = () => {
+const RegisterPage: React.FC = () => {
   const router = useRouter();
   const { user } = useAppSelector((state: AppState) => state.user);
   const [revealPassword, setRevealPassword] = useState<boolean>(false);
@@ -66,25 +56,16 @@ const LoginPage: React.FC = () => {
     handleBlur,
     handleSubmit,
     setFieldTouched,
+    setFieldError,
     errors,
     touched,
     values,
   } = useFormik({
-    validationSchema: LoginSchema,
-    initialValues: { email: '', password: '' },
-    onSubmit: async ({ email, password }) => {
+    validationSchema: RegisterSchema,
+    initialValues: { username: '', email: '', password: '' },
+    onSubmit: async ({ username, email, password }) => {
       try {
-        login(email, password);
-        setToast({
-          isOpen: true,
-          toggle: () =>
-            setToast((prevToast) => ({ ...prevToast, isOpen: false })),
-          text: {
-            heading: 'Login completed',
-            body: 'You have successfully logged in.',
-          },
-          type: 'success',
-        });
+        console.log(username, email, password);
       } catch (error) {
         setToast({
           isOpen: true,
@@ -103,6 +84,8 @@ const LoginPage: React.FC = () => {
     },
   });
 
+  console.log(errors);
+
   // redirect to home page if user is logged in
   useEffect(() => {
     if (user) {
@@ -110,15 +93,25 @@ const LoginPage: React.FC = () => {
     }
   }, [user]);
 
+  const lookupUsername = useCallback(
+    debounce(async (username) => {
+      if (username.length >= 3) {
+        const exists = await checkUsername(username);
+        console.log('Firestore read executed!');
+        exists && setFieldError('username', 'That username has been taken.');
+      }
+    }, 500),
+    [],
+  );
   return (
     <>
       <Head>
-        <title>Login || Bloggo</title>
+        <title>Register || Bloggo</title>
       </Head>
       <AppLayout
-        subHeading="Welcome to Bloggo - a blogging platform."
-        headingEmoji="🔑"
-        heading="Login"
+        subHeading="Become a part of the Bloggo family."
+        headingEmoji="🎉"
+        heading="Register"
       >
         <div className="max-w-md mx-auto space-y-6">
           <div className="grid gap-4">
@@ -150,6 +143,35 @@ const LoginPage: React.FC = () => {
           </div>
           {/* FORM */}
           <form className="grid grid-cols-1 gap-6" onSubmit={handleSubmit}>
+            {touched.username && errors.username && (
+              <FormFeedback
+                type="error"
+                message={errors.username}
+              ></FormFeedback>
+            )}
+            <label className="block">
+              <span className="text-neutral-800 dark:text-neutral-200">
+                Username
+              </span>
+              <Input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="sal"
+                className={classnames('mt-1', {
+                  'border-pink-500 text-pink-600':
+                    touched.username && errors.username,
+                })}
+                onChange={(e) => {
+                  handleChange(e);
+                  // side effect to check for existing usernames
+                  lookupUsername(e.target.value);
+                }}
+                onBlur={handleBlur}
+                value={values.username}
+                required
+              />
+            </label>
             {touched.email && errors.email && (
               <FormFeedback type="error" message={errors.email}></FormFeedback>
             )}
@@ -181,17 +203,13 @@ const LoginPage: React.FC = () => {
             <label className="block">
               <span className="flex justify-between items-center text-neutral-800 dark:text-neutral-200">
                 Password
-                {touched.password ? (
+                {touched.password && (
                   <p
                     className="text-sm"
                     onClick={() => setRevealPassword(!revealPassword)}
                   >
                     {revealPassword ? <FiEyeOff /> : <FiEye />}
                   </p>
-                ) : (
-                  <Link href="/forgot-password" className="text-sm">
-                    Forgot password?
-                  </Link>
                 )}
               </span>
               <Input
@@ -206,19 +224,22 @@ const LoginPage: React.FC = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.password}
-                required
                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
               />
             </label>
 
-            <Button primary type="submit">
+            <Button
+              primary
+              type="submit"
+              disabled={Object.keys(errors).length === 0}
+            >
               Continue
             </Button>
           </form>
 
           <span className="block text-center text-neutral-700 dark:text-neutral-300">
-            Not part of Bloggo? {` `}
-            <Link href="/register">Register with Bloggo</Link>
+            A Bloggo member? {` `}
+            <Link href="/login">Login with Bloggo</Link>
           </span>
         </div>
       </AppLayout>
@@ -227,4 +248,4 @@ const LoginPage: React.FC = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
