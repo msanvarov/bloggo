@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { useRouter } from 'next/router';
 
 import { AppState, logout, useAppSelector } from '@bloggo/redux';
 
@@ -17,6 +18,7 @@ export interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ isTopOfPage }) => {
+  const router = useRouter();
   const { user } = useAppSelector((state: AppState) => state.user);
   return (
     <div
@@ -36,9 +38,19 @@ export const Navbar: React.FC<NavbarProps> = ({ isTopOfPage }) => {
             <SearchDropdown />
             {user ? (
               <>
-                <CreatePost onClick={() => {}} />
+                <CreatePost
+                  onClick={() => {
+                    console.log('Clicked create post');
+                  }}
+                />
                 <div className="px-1">
-                  <Button primary onClick={() => logout()}>
+                  <Button
+                    primary
+                    onClick={() => {
+                      logout();
+                      router.reload();
+                    }}
+                  >
                     Logout
                   </Button>
                 </div>
