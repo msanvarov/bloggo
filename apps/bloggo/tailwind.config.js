@@ -1,3 +1,4 @@
+const { join } = require('path');
 const { createGlobPatternsForDependencies } = require('@nrwl/react/tailwind');
 const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('tailwindcss/colors');
@@ -16,8 +17,12 @@ const customColors =
   };
 
 module.exports = {
-  mode: 'jit',
-  content: createGlobPatternsForDependencies(__dirname),
+  // mode: 'jit',
+  content: [
+    join(__dirname, 'pages/**/*.{js,ts,jsx,tsx}'),
+    ...createGlobPatternsForDependencies(__dirname),
+  ],
+  presets: [require('../../tailwind-workspace-preset.js')],
   darkMode: 'class', // or 'media' or 'class',
   theme: {
     container: {
@@ -140,10 +145,4 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/line-clamp'),
-    require('@tailwindcss/aspect-ratio'),
-  ],
 };
