@@ -44,7 +44,10 @@ export const AppLayout: React.FC<AppLayoutProps> = ({
         }),
       );
       unsubscribe = onSnapshot(doc(db, 'users', user.uid), (doc) => {
-        dispath(setUsername(doc.data()?.['username']));
+        const data = doc.data();
+        if (data) {
+          dispath(setUsername(data['username']));
+        }
       });
     } else {
       dispath(setUsername(null));
