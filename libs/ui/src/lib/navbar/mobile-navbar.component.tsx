@@ -1,10 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Disclosure } from '@headlessui/react';
 import classnames from 'classnames';
+import { entries, groupBy, map } from 'lodash';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { FiChevronDown, FiX } from 'react-icons/fi';
+
+import { AppState, useAppSelector } from '@bloggo/redux';
 
 import { Button } from '../buttons';
 import { DarkModeToggleContainer } from '../dark-mode-toggle';
@@ -14,14 +17,11 @@ import { INavEntry } from './navigation-entry.component';
 import { navigationOptions } from './navigation.component';
 
 type MobileNavbarProps = {
-  navigationOptions?: INavEntry[];
   onClose?: () => void;
 };
-export const MobileNavbar: React.FC<MobileNavbarProps> = ({
-  navigationOptions: navigationEntries = navigationOptions,
-  onClose,
-}) => {
+export const MobileNavbar: React.FC<MobileNavbarProps> = ({ onClose }) => {
   const router = useRouter();
+  const { user } = useAppSelector((state: AppState) => state.user);
 
   const renderChildMenu = (navEntry: INavEntry) => {
     return (
@@ -97,49 +97,64 @@ export const MobileNavbar: React.FC<MobileNavbarProps> = ({
         </span>
       </div>
       <ul className="flex flex-col py-6 px-2 space-y-1">
-        {navigationOptions.map((item) => (
-          <Disclosure
-            key={item.id}
-            as="li"
-            className="text-neutral-900 dark:text-white"
-          >
-            <Link
-              href={{
-                pathname: item.href || undefined,
-              }}
-            >
-              <a
-                className={classnames(
-                  'flex w-full items-center py-2.5 px-4 font-medium uppercase tracking-wide text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg',
-                  {
-                    'text-secondary': item.href === router.asPath,
-                  },
-                )}
-              >
-                <span onClick={onClose}>{item.name}</span>
-                {item.children && (
-                  <span
-                    className="block flex-grow"
-                    onClick={(e) => e.preventDefault()}
+        {map(
+          entries(groupBy(navigationOptions, 'restriction')),
+          ([restriction, navigationEntries], i) => {
+            if (restriction === 'private' && !user) {
+              return null;
+            }
+            return (
+              <Fragment key={i}>
+                {navigationEntries.map((navigationEntry) => (
+                  <Disclosure
+                    key={navigationEntry.id}
+                    as="li"
+                    className="text-neutral-900 dark:text-white"
                   >
-                    <Disclosure.Button
-                      as="span"
-                      className="flex justify-end flex-grow"
+                    <Link
+                      href={{
+                        pathname: navigationEntry.href || undefined,
+                      }}
                     >
-                      <FiChevronDown
-                        className="ml-2 h-4 w-4 text-neutral-500"
-                        aria-hidden="true"
-                      />
-                    </Disclosure.Button>
-                  </span>
-                )}
-              </a>
-            </Link>
-            {item.children && (
-              <Disclosure.Panel>{renderChildMenu(item)}</Disclosure.Panel>
-            )}
-          </Disclosure>
-        ))}
+                      <a
+                        className={classnames(
+                          'flex w-full items-center py-2.5 px-4 font-medium uppercase tracking-wide text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg',
+                          {
+                            'text-secondary':
+                              navigationEntry.href === router.asPath,
+                          },
+                        )}
+                      >
+                        <span onClick={onClose}>{navigationEntry.name}</span>
+                        {navigationEntry.children && (
+                          <span
+                            className="block flex-grow"
+                            onClick={(e) => e.preventDefault()}
+                          >
+                            <Disclosure.Button
+                              as="span"
+                              className="flex justify-end flex-grow"
+                            >
+                              <FiChevronDown
+                                className="ml-2 h-4 w-4 text-neutral-500"
+                                aria-hidden="true"
+                              />
+                            </Disclosure.Button>
+                          </span>
+                        )}
+                      </a>
+                    </Link>
+                    {navigationEntry.children && (
+                      <Disclosure.Panel>
+                        {renderChildMenu(navigationEntry)}
+                      </Disclosure.Panel>
+                    )}
+                  </Disclosure>
+                ))}
+              </Fragment>
+            );
+          },
+        )}
       </ul>
       <div className="flex items-center justify-between py-6 px-5 space-x-4">
         <a href="/#" target="_blank" rel="noopener noreferrer">

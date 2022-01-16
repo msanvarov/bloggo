@@ -1,6 +1,9 @@
 import classNames from 'classnames';
 
+import { AppState, logout, useAppSelector } from '@bloggo/redux';
+
 import { Button } from '../buttons';
+import { CreatePost } from '../create-post.component';
 import { DarkModeToggleContainer } from '../dark-mode-toggle';
 import { Logo } from '../logo.component';
 import { MenuBar } from '../menu-bar.component';
@@ -14,6 +17,7 @@ export interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ isTopOfPage }) => {
+  const { user } = useAppSelector((state: AppState) => state.user);
   return (
     <div
       className={classNames('main-nav', 'relative', 'z-10', {
@@ -30,10 +34,22 @@ export const Navbar: React.FC<NavbarProps> = ({ isTopOfPage }) => {
           <div className="hidden items-center xl:flex space-x-1">
             <DarkModeToggleContainer />
             <SearchDropdown />
-            <div className="px-1" />
-            <Button primary href="/login">
-              Login
-            </Button>
+            {user ? (
+              <>
+                <CreatePost onClick={() => {}} />
+                <div className="px-1">
+                  <Button primary onClick={() => logout()}>
+                    Logout
+                  </Button>
+                </div>
+              </>
+            ) : (
+              <div className="px-1">
+                <Button primary href="/login">
+                  Login
+                </Button>
+              </div>
+            )}
           </div>
           <div className="flex items-center xl:hidden">
             <MenuBar />

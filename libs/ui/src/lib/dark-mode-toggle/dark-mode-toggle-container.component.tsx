@@ -1,4 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+
+import {
+  AppState,
+  toggleDarkMode,
+  useAppDispatch,
+  useAppSelector,
+} from '@bloggo/redux';
 
 import { DarkModeSwitch } from './dark-mode-switch.component';
 
@@ -9,7 +16,8 @@ type DarkModeToggleContainerProps = {
 export const DarkModeToggleContainer: React.FC<
   DarkModeToggleContainerProps
 > = ({ className }) => {
-  const [darkMode, setDarkMode] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
+  const darkMode = useAppSelector((state: AppState) => state.layout.darkMode);
   useEffect(() => {
     const root = document.querySelector('html');
     if (!root) return;
@@ -20,15 +28,15 @@ export const DarkModeToggleContainer: React.FC<
     }
   }, [darkMode]);
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
+  const toggleDarkModeOnClick = () => {
+    dispatch(toggleDarkMode());
   };
   return (
     <DarkModeSwitch
       {...{
         className,
         isDarkMode: darkMode,
-        onClick: toggleDarkMode,
+        onClick: toggleDarkModeOnClick,
       }}
     />
   );

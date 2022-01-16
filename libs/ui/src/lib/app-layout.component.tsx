@@ -1,5 +1,9 @@
 import classnames from 'classnames';
-import React from 'react';
+import { doc, onSnapshot } from 'firebase/firestore';
+import React, { useEffect } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+
+import { auth, db, setUser, setUsername, useAppDispatch } from '@bloggo/redux';
 
 import { PageHeading } from './page-heading.component';
 
@@ -8,6 +12,8 @@ type AppLayoutProps = {
   heading: string;
   headingEmoji?: string;
   subHeading?: string;
+  // basic layout
+  basicLayout?: boolean;
 };
 
 export const AppLayout: React.FC<AppLayoutProps> = ({
@@ -16,8 +22,42 @@ export const AppLayout: React.FC<AppLayoutProps> = ({
   subHeading,
   headingEmoji,
   children,
+  basicLayout = false,
 }) => {
-  return (
+  const dispath = useAppDispatch();
+  const [user] = useAuthState(auth);
+
+  useEffect(() => {
+    // turn off realtime subscription
+    let unsubscribe;
+
+    if (user) {
+      dispath(
+        setUser({
+          uid: user.uid,
+          email: user.email,
+          emailVerified: user.emailVerified,
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          createdAt: user.metadata.creationTime,
+          lastLoginAt: user.metadata.lastSignInTime,
+        }),
+      );
+      unsubscribe = onSnapshot(doc(db, 'users', user.uid), (doc) => {
+        dispath(setUsername(doc.data()?.['username']));
+      });
+    } else {
+      dispath(setUsername(null));
+      dispath(setUser(null));
+    }
+
+    return unsubscribe;
+  }, [user]);
+
+  return basicLayout ? (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    <>{children}</>
+  ) : (
     <section className={classnames('relative', className)}>
       {/* background */}
       <div

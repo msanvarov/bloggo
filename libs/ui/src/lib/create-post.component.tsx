@@ -1,16 +1,13 @@
 import classnames from 'classnames';
 import React from 'react';
-import { FiMoon, FiSun } from 'react-icons/fi';
+import { FiPenTool } from 'react-icons/fi';
 
-type DarkModeSwitchProps = {
+type CreatePostProps = {
   className?: string;
-  isDarkMode: boolean;
   onClick: () => void;
 };
-
-export const DarkModeSwitch: React.FC<DarkModeSwitchProps> = ({
+export const CreatePost: React.FC<CreatePostProps> = ({
   className,
-  isDarkMode,
   onClick,
 }) => {
   return (
@@ -21,12 +18,8 @@ export const DarkModeSwitch: React.FC<DarkModeSwitchProps> = ({
         className,
       )}
     >
-      <span className="sr-only">Enable dark mode</span>
-      {isDarkMode ? (
-        <FiSun className="w-7 h-7" aria-hidden="true" />
-      ) : (
-        <FiMoon className="w-7 h-7" aria-hidden="true" />
-      )}
+      <span className="sr-only">Create post</span>
+      <FiPenTool className="w-7 h-7" aria-hidden="true" />
     </button>
   );
 };

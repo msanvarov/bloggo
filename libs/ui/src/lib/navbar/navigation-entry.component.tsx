@@ -13,6 +13,7 @@ export interface INavEntry {
   targetBlank?: boolean;
   children?: INavEntry[];
   type?: 'dropdown';
+  restriction?: 'public' | 'private';
 }
 
 export interface NavigationEntryProps {
