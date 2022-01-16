@@ -8,23 +8,23 @@ import {
   FiXCircle,
 } from 'react-icons/fi';
 
-type ToastProps = {
+export type ToastProps = {
   isOpen: boolean;
   toggle: () => void;
   text: {
     heading: string;
     body: string;
   };
-  type: 'success' | 'error' | 'info' | 'warning';
+  type?: 'success' | 'error' | 'info' | 'warning';
 };
 
 export const Toast: React.FC<ToastProps> = ({
   isOpen,
   toggle,
   text: { heading, body },
-  type,
+  type = 'info',
 }) => {
-  const getStatusIcon = (type: 'success' | 'error' | 'info' | 'warning') => {
+  const getToastIcon = (type: 'success' | 'error' | 'info' | 'warning') => {
     switch (type) {
       case 'success':
         return (
@@ -67,7 +67,7 @@ export const Toast: React.FC<ToastProps> = ({
           <div className="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto ring-1 ring-black ring-opacity-5 overflow-hidden">
             <div className="p-4">
               <div className="flex items-start">
-                <div className="flex-shrink-0">{getStatusIcon(type)}</div>
+                <div className="flex-shrink-0">{getToastIcon(type)}</div>
                 <div className="ml-3 w-0 flex-1 pt-0.5">
                   <p className="text-sm font-medium text-gray-900">{heading}</p>
                   <p className="mt-1 text-sm text-gray-500">{body}</p>
