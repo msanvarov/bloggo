@@ -11,7 +11,7 @@ import * as Yup from 'yup';
 import {
   AppState,
   checkUsername,
-  createUsernameAndLinkToUser,
+  createUsernameWithUserData,
   register,
   useAppSelector,
 } from '@bloggo/redux';
@@ -72,7 +72,7 @@ const RegisterPage: React.FC = () => {
     onSubmit: async ({ username, email, password }) => {
       try {
         const user = await register(username, email, password);
-        createUsernameAndLinkToUser({
+        createUsernameWithUserData({
           uid: user.uid,
           username,
           photoURL: user.photoURL,

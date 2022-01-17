@@ -9,7 +9,7 @@ import * as Yup from 'yup';
 import {
   AppState,
   checkUsername,
-  createUsernameAndLinkToUser,
+  createUsernameWithUserData,
   useAppSelector,
 } from '@bloggo/redux';
 import {
@@ -52,7 +52,7 @@ const EnterPage: React.FC = () => {
     initialValues: { username: '' },
     onSubmit: async ({ username }) => {
       try {
-        createUsernameAndLinkToUser({
+        createUsernameWithUserData({
           uid: user.uid,
           username,
           displayName: user.displayName,
