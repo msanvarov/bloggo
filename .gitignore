@@ -27,6 +27,13 @@ Temporary Items
 .next/
 dist/*
 
+### Firebase ###
+**/.firebaserc
+
+### Firebase Patch ###
+.runtimeconfig.json
+.firebase/
+
 ### React ###
 .DS_*
 *.log
