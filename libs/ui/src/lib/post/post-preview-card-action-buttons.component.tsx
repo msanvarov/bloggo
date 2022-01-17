@@ -13,6 +13,7 @@ type PostPreviewCardActionButtonsProps = {
   commentCount: number;
   hiddenCommentOnMobile?: boolean;
   onClickLike?: (id: string) => void;
+  classBgIcon?: string;
 };
 export const PostPreviewCardActionButtons: React.FC<
   PostPreviewCardActionButtonsProps
@@ -25,6 +26,7 @@ export const PostPreviewCardActionButtons: React.FC<
   postId,
   href,
   commentCount,
+  classBgIcon,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   onClickLike = () => {},
 }) => {
@@ -53,7 +55,11 @@ export const PostPreviewCardActionButtons: React.FC<
       >
         <span>6 min read</span>
         {/* TODO: fix postId to have the slug  */}
-        <BookmarkPostButton postId={postId} initBookmarked={isBookmarked} />
+        <BookmarkPostButton
+          postId={postId}
+          initBookmarked={isBookmarked}
+          containerClassName={classBgIcon}
+        />
       </div>
     </>
   );
