@@ -1,5 +1,5 @@
-// external styling deps
 import '@glidejs/glide/dist/css/glide.core.min.css';
+import 'moment-timezone';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
