@@ -4,7 +4,7 @@ export interface IFirestoreUserData {
   photoURL: string;
 }
 
-export interface IFirestorePostsData {
+export interface IFirestorePostData {
   // author specific data
   uid: string;
   username: string;

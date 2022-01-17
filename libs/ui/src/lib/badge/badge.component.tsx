@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import React from 'react';
 
-import { Link } from './link.component';
+import { Link } from '../link.component';
 
 export type BadgeColor =
   | 'pink'

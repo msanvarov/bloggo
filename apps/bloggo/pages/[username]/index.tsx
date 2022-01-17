@@ -5,7 +5,7 @@ import React from 'react';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 
 import {
-  IFirestorePostsData,
+  IFirestorePostData,
   IFirestoreUserData,
   getUserDataFromUsername,
   getUserPostsWithLimit,
@@ -20,11 +20,8 @@ import {
 
 interface UserProfilePageProps {
   user: IFirestoreUserData;
-  posts: IFirestorePostsData[];
+  posts: IFirestorePostData[];
 }
-
-// Max post to query per page
-const LIMIT = 1;
 
 export const getServerSideProps: GetServerSideProps<
   UserProfilePageProps
@@ -33,14 +30,14 @@ export const getServerSideProps: GetServerSideProps<
   const userDoc = await getUserDataFromUsername(username);
 
   let user: IFirestoreUserData = null;
-  let posts: IFirestorePostsData[] = null;
+  let posts: IFirestorePostData[] = null;
 
   if (userDoc) {
     user = userDoc.data() as IFirestoreUserData;
     posts = (await getUserPostsWithLimit(
       userDoc.ref,
       6,
-    )) as IFirestorePostsData[];
+    )) as IFirestorePostData[];
   }
 
   // will be passed to the page component as props
@@ -150,7 +147,7 @@ const UserProfilePage: React.FC<UserProfilePageProps> = ({ user, posts }) => {
                 1
               </span> */}
             </div>
-            <Button primary>Load more...</Button>
+            {posts.length > 6 && <Button primary>Load more...</Button>}
           </div>
         </Tabs>
       </section>

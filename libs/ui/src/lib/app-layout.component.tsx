@@ -13,7 +13,7 @@ const auth = getAuth();
 
 type AppLayoutProps = {
   className?: string;
-  heading: string;
+  heading?: string;
   headingEmoji?: string;
   subHeading?: string;
   // basic layout
