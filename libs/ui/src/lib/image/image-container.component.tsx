@@ -13,6 +13,13 @@ interface ImageContainerProps extends ImgHTMLAttributes<HTMLImageElement> {
   prevImageHorizontal?: boolean;
 }
 
+type StaticImageData = {
+  src: string;
+  height: number;
+  width: number;
+  placeholder?: string;
+};
+
 export const ImageContainer: React.FC<ImageContainerProps> = ({
   containerClassName = '',
   alt = 'nc-imgs',
@@ -33,7 +40,9 @@ export const ImageContainer: React.FC<ImageContainerProps> = ({
     ? placeholderImageLargeHPng
     : placeholderImageLargePng;
 
-  const [__src, set__src] = useState(placeholderImage);
+  const [__src, set__src] = useState<string | StaticImageData>(
+    placeholderImage,
+  );
   const [imageLoaded, setImageLoaded] = useState<boolean>(false);
 
   const _initActions = async () => {
@@ -86,7 +95,12 @@ export const ImageContainer: React.FC<ImageContainerProps> = ({
   return (
     <div className={containerClassName} ref={containerDivElRef}>
       {__src ? (
-        <img src={__src} className={className} alt={alt} {...rest} />
+        <img
+          src={typeof __src === 'string' ? __src : __src.src}
+          className={className}
+          alt={alt}
+          {...rest}
+        />
       ) : (
         <div
           className={`${className} bg-neutral-200 dark:bg-neutral-6000`}
