@@ -56,7 +56,7 @@ export const LikePostButton: React.FC<LikePostButtonProps> = ({
         className,
         'focus:outline-none',
         {
-          'text-rose-600 bg-rose-50 dark:bg-rose-100': isLiked,
+          'text-rose-600 bg-rose-50 dark:bg-rose-100': isLiked(),
           'text-neutral-700 bg-neutral-50 dark:text-neutral-200 dark:bg-neutral-800 hover:bg-rose-50 dark:hover:bg-rose-100 hover:text-rose-600 dark:hover:text-rose-500':
             !isLiked(),
         },
