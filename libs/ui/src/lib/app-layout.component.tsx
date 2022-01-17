@@ -1,11 +1,15 @@
 import classnames from 'classnames';
-import { doc, onSnapshot } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import { doc, getFirestore, onSnapshot } from 'firebase/firestore';
 import React, { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-import { auth, db, setUser, setUsername, useAppDispatch } from '@bloggo/redux';
+import { setUser, setUsername, useAppDispatch } from '@bloggo/redux';
 
 import { PageHeading } from './page-heading.component';
+
+const db = getFirestore();
+const auth = getAuth();
 
 type AppLayoutProps = {
   className?: string;

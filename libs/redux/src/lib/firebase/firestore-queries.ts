@@ -5,7 +5,6 @@ import {
   doc,
   getDoc,
   getDocs,
-  getFirestore,
   limit,
   orderBy,
   query,
@@ -13,9 +12,8 @@ import {
   writeBatch,
 } from 'firebase/firestore';
 
+import { db } from './firebase';
 import { docToJSON } from './helpers';
-
-const db = getFirestore();
 
 /**`
  * Checks if a username doc exists in the database.
