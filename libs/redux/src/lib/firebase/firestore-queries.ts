@@ -1,13 +1,16 @@
 import {
   DocumentData,
   DocumentReference,
+  Timestamp,
   collection,
+  collectionGroup,
   doc,
   getDoc,
   getDocs,
   limit,
   orderBy,
   query,
+  startAfter,
   where,
   writeBatch,
 } from 'firebase/firestore';
@@ -64,20 +67,73 @@ export const getUserDataFromUsername = async (username: string | string[]) => {
 };
 
 /**`
- * Get the last post_limit posts from a user given the user document reference.
+ * Get the last postLimit posts by the user given the user document reference.
  * @param  {DocumentReference<DocumentData>} userDocRef
- * @param  {number} postCount
+ * @param  {number} postLimit
  */
 export const getUserPostsWithLimit = async (
   userDocRef: DocumentReference<DocumentData>,
-  postCount: number,
+  postLimit: number,
 ) => {
   const postsRef = collection(userDocRef, 'posts');
   const q = query(
     postsRef,
     where('published', '==', true),
     orderBy('createdAt', 'desc'),
-    limit(postCount),
+    limit(postLimit),
+  );
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map(docToJSON);
+};
+
+/**`
+ * Get the last postLimit posts ordered by createdAt date.
+ * @param  {number} postLimit
+ */
+export const getPostsWithLimit = async (postLimit: number) => {
+  const ref = collectionGroup(db, 'posts');
+  const q = query(
+    ref,
+    where('published', '==', true),
+    orderBy('createdAt', 'desc'),
+    limit(postLimit),
+  );
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map(docToJSON);
+};
+
+/**`
+ * Get the last postLimit posts ordered by createdAt date.
+ * @param  {number} postLimit
+ * @param  {number} startingAt
+ */
+export const getPostsWithLimitStartingAt = async (
+  postLimit: number,
+  startingAt: Timestamp,
+) => {
+  const ref = collectionGroup(db, 'posts');
+  const q = query(
+    ref,
+    where('published', '==', true),
+    orderBy('createdAt', 'desc'),
+    startAfter(startingAt),
+    limit(postLimit),
+  );
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map(docToJSON);
+};
+
+/**`
+ * Get the last postLimit posts ordered by like count.
+ * @param  {number} postLimit
+ */
+export const getPostsByLikesWithLimit = async (postLimit: number) => {
+  const ref = collectionGroup(db, 'posts');
+  const q = query(
+    ref,
+    where('published', '==', true),
+    orderBy('likeCount', 'desc'),
+    limit(postLimit),
   );
   const querySnapshot = await getDocs(q);
   return querySnapshot.docs.map(docToJSON);
