@@ -22,7 +22,7 @@ type StaticImageData = {
 
 export const ImageContainer: React.FC<ImageContainerProps> = ({
   containerClassName = '',
-  alt = 'nc-imgs',
+  alt = 'container',
   src = '',
   prevImageHorizontal = false,
   className = 'object-cover w-full h-full',

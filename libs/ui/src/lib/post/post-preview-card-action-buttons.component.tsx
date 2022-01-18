@@ -6,7 +6,7 @@ import { CommentOnPostButton } from '../buttons/comment-on-post-button.component
 type PostPreviewCardActionButtonsProps = {
   className?: string;
   itemClass?: string;
-  likeCount: number;
+  likes: number;
   postId: string;
   href: string;
   isBookmarked: boolean;
@@ -22,7 +22,7 @@ export const PostPreviewCardActionButtons: React.FC<
   itemClass = 'px-3 h-8 text-xs',
   hiddenCommentOnMobile = true,
   isBookmarked,
-  likeCount,
+  likes,
   postId,
   href,
   commentCount,
@@ -36,7 +36,7 @@ export const PostPreviewCardActionButtons: React.FC<
         <LikePostButton
           className={itemClass}
           like={{
-            count: likeCount,
+            count: likes,
             isLiked: false,
           }}
           onClickLike={onClickLike}

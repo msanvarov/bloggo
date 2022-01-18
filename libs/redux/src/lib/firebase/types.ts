@@ -2,6 +2,13 @@ export interface IFirestoreUserData {
   username: string;
   displayName: string;
   photoURL: string;
+  createdAt: number;
+}
+
+export interface IFirestoreUsernameData {
+  username: string;
+  uid: string;
+  createdAt: number;
 }
 
 export interface IFirestorePostData {
@@ -17,5 +24,6 @@ export interface IFirestorePostData {
   published: boolean;
   thumbnail: string;
   href: string;
-  likeCount: number;
+  description: string;
+  likes: number;
 }

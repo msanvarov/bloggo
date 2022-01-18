@@ -13,18 +13,13 @@ const categories = [
     count: 26,
     color: 'blue',
   },
-  {
-    id: 16,
-    name: 'Design',
-    href: '/archive/the-demo-archive-slug',
-    thumbnail:
-      'https://images.unsplash.com/photo-1536329583941-14287ec6fc4e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGRlc2lnbnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-    count: 15,
-    color: 'indigo',
-  },
 ].map((category) => ({ ...category, taxonomy: 'category' }));
 
-export const BadgeList: React.FC = () => {
+type BadgeListProps = {
+  badgeClassName?: string;
+};
+
+export const BadgeList: React.FC<BadgeListProps> = ({ badgeClassName }) => {
   return (
     <>
       {categories.map((category, index) => (
@@ -32,6 +27,7 @@ export const BadgeList: React.FC = () => {
           key={index}
           name={category.name}
           href={category.href}
+          className={badgeClassName}
           color={category.color as BadgeColor}
         />
       ))}

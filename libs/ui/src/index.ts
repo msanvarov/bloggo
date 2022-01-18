@@ -17,3 +17,5 @@ export * from './lib/forms';
 export * from './lib/dark-mode-toggle';
 export * from './lib/image';
 export * from './lib/post';
+export * from './lib/sliders';
+export * from './lib/badge';

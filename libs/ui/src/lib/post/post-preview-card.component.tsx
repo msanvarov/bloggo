@@ -24,7 +24,7 @@ export const PostPreviewCard: React.FC<PostPreviewCardProps> = ({
   isAuthorHidden = false,
   ratio = 'aspect-w-4 aspect-h-3',
 }) => {
-  const { uid, title, thumbnail, href, createdAt, updatedAt, likeCount, slug } =
+  const { uid, title, thumbnail, href, createdAt, updatedAt, likes, slug } =
     post;
 
   return (
@@ -72,7 +72,7 @@ export const PostPreviewCard: React.FC<PostPreviewCardProps> = ({
             className="relative"
             {...{
               commentCount: 21,
-              likeCount,
+              likes,
               href,
               isBookmarked: false,
               postId: `${uid}/${slug}`,

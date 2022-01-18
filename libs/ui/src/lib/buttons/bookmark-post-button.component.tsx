@@ -29,7 +29,7 @@ export const BookmarkPostButton: React.FC<BookmarkPostButtonProps> = ({
   return (
     <button
       className={classnames(
-        'like-post-button',
+        'bookmark-post-button',
         'relative rounded-full flex items-center justify-center',
         'focus:outline-none',
         containerClassName,
