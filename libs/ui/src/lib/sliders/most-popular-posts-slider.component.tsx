@@ -10,7 +10,8 @@ import { BadgeList } from '../badge';
 import NextPrevButtons from '../buttons/next-prev-buttons.component';
 import { ImageContainer } from '../image';
 import { Link } from '../link.component';
-import { PostPreviewCardActionButtons } from './post-preview-card-action-buttons.component';
+import { PostPreviewCardActionButtons } from '../post/post-preview-card-action-buttons.component';
+import { SectionHeading } from '../section-heading.component';
 
 type MostPopularPostsSliderProps = {
   className?: string;
@@ -43,17 +44,9 @@ export const MostPopularPostsSlider: React.FC<MostPopularPostsSliderProps> = ({
   return (
     <div className={classnames('relative', className)}>
       {heading && (
-        <div
-          className={`relative flex flex-col sm:flex-row sm:items-end justify-between mb-12 md:mb-16 text-neutral-900 dark:text-neutral-50`}
-        >
-          <div className={'max-w-2xl'}>
-            <h2 className={`text-3xl md:text-4xl font-semibold`}>{heading}</h2>
-
-            <span className="mt-2 md:mt-3 font-normal block text-base sm:text-xl text-neutral-500 dark:text-neutral-400">
-              Discover the most fascinating trending posts.
-            </span>
-          </div>
-        </div>
+        <SectionHeading desc="Discover the most fascinating trending posts.">
+          {heading}
+        </SectionHeading>
       )}
       {posts.map((post, index) => (
         <Transition
@@ -61,7 +54,7 @@ export const MostPopularPostsSlider: React.FC<MostPopularPostsSliderProps> = ({
           appear={true}
           as="div"
           className={`relative flex flex-col-reverse md:flex-row justify-end ${className}`}
-          show
+          show={index === indexActive}
         >
           <div className="md:absolute z-10 md:left-0 md:top-1/2 md:transform md:-translate-y-1/2 w-full -mt-8 md:mt-0 px-3 sm:px-6 md:px-0 md:w-3/5 lg:w-1/2 xl:w-2/5">
             <Transition.Child
@@ -99,7 +92,7 @@ export const MostPopularPostsSlider: React.FC<MostPopularPostsSliderProps> = ({
                     <h2
                       className={`text-sm text-neutral-700 hover:text-black dark:text-neutral-300 dark:hover:text-white font-medium`}
                     >
-                      {post.username}
+                      @{post.username}
                     </h2>
                     <span
                       className={`flex items-center mt-1 text-xs text-neutral-500 dark:text-neutral-400`}
@@ -124,7 +117,7 @@ export const MostPopularPostsSlider: React.FC<MostPopularPostsSliderProps> = ({
                     classBgIcon="h-8 w-8 bg-neutral-50 bg-opacity-20 hover:bg-opacity-50 dark:bg-neutral-800 dark:bg-opacity-30 dark:hover:bg-opacity-50"
                     {...{
                       commentCount: 21,
-                      likeCount: post.likeCount,
+                      likes: post.likes,
                       href: post.href,
                       isBookmarked: false,
                       postId: `${post.uid}/${post.slug}`,
