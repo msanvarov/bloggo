@@ -48,6 +48,7 @@ export const createUsernameWithUserData = async ({
     username,
     photoURL: photoURL,
     displayName: displayName || username,
+    createdAt: Timestamp.now(),
   });
   batch.set(doc(db, 'usernames', username), { uid });
   return await batch.commit();
@@ -103,6 +104,25 @@ export const getPostsWithLimit = async (postLimit: number) => {
 };
 
 /**`
+ * Get the last usernameLimit username ordered by createdAt date.
+ * @param  {number} usersLimit
+ */
+export const getUsernamesOrderedByDateWithLimit = async (
+  usernameLimit: number,
+) => {
+  const ref = collection(db, 'usernames');
+  const q = query(ref, orderBy('createdAt', 'desc'), limit(usernameLimit));
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map((doc) => {
+    const data = doc.data();
+    return {
+      username: doc.id,
+      createdAt: data.createdAt.toMillis(),
+    };
+  });
+};
+
+/**`
  * Get the last postLimit posts ordered by createdAt date.
  * @param  {number} postLimit
  * @param  {number} startingAt
@@ -132,9 +152,41 @@ export const getPostsByLikesWithLimit = async (postLimit: number) => {
   const q = query(
     ref,
     where('published', '==', true),
-    orderBy('likeCount', 'desc'),
+    orderBy('likes', 'desc'),
     limit(postLimit),
   );
   const querySnapshot = await getDocs(q);
   return querySnapshot.docs.map(docToJSON);
+};
+
+// TODO: fix architecture so that the slug field and document id aren't bound together. A post document id should be unique and slugs should be its own collection that maps to it.
+
+/**`
+ * Get a post by its document id (slug) for a specific user given the userPath.
+ * @param  {string} userPath
+ * @param  {string} slug
+ */
+export const getPostBySlugForUser = async (
+  userPath: string,
+  slug: string | string[],
+) => {
+  const ref = doc(db, userPath, 'posts', Array.isArray(slug) ? slug[0] : slug);
+  const docSnapshot = await getDoc(ref);
+  console.log(docSnapshot.data());
+  return [ref.path, docToJSON(docSnapshot)] as const;
+};
+
+// TODO: move this to the admin sdk for better performance
+/**`
+ * Get posts
+ */
+export const getPostPaths = async () => {
+  const ref = collectionGroup(db, 'posts');
+  const querySnapshot = await getDocs(ref);
+  return querySnapshot.docs.map((doc) => {
+    const { slug, username } = doc.data();
+    return {
+      params: { username, slug },
+    };
+  });
 };

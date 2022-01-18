@@ -1,7 +1,6 @@
-import { FirebaseOptions, getApp, initializeApp } from 'firebase/app';
+import { getApp, initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
-import getStorage from 'redux-persist/es/storage/getStorage';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDNotinqdiNETddK4e_MA_rNsz1gkYKChw',
@@ -13,14 +12,14 @@ const firebaseConfig = {
   measurementId: 'G-D2F125TYVK',
 };
 
-export const initializeFirebase = (firebaseConfig: FirebaseOptions) => {
+export const initializeFirebase = () => {
   try {
     return getApp();
-  } catch {
+  } catch (e) {
     return initializeApp(firebaseConfig);
   }
 };
 
-const app = initializeFirebase(firebaseConfig);
+const app = initializeFirebase();
 export const auth = getAuth(app);
 export const db = getFirestore(app);
