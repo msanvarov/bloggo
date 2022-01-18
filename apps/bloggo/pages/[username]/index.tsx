@@ -30,6 +30,12 @@ export const getServerSideProps: GetServerSideProps<
   const { username } = query;
   const userDoc = await getUserDataFromUsername(username);
 
+  if (!userDoc) {
+    return {
+      notFound: true,
+    };
+  }
+
   let user: IFirestoreUserData = null;
   let posts: IFirestorePostData[] = null;
 
