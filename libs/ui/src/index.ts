@@ -9,7 +9,7 @@ export * from './lib/app-layout.component';
 export * from './lib/input.component';
 export * from './lib/link.component';
 export * from './lib/footer.component';
-
+export * from './lib/meta-tags.component';
 // folder modules
 export * from './lib/navbar';
 export * from './lib/buttons';

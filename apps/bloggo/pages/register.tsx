@@ -21,6 +21,7 @@ import {
   FormFeedback,
   Input,
   Link,
+  Metatags,
   Toast,
   ToastProps,
 } from '@bloggo/ui';
@@ -127,9 +128,7 @@ const RegisterPage: React.FC = () => {
 
   return (
     <>
-      <Head>
-        <title>Register || Bloggo</title>
-      </Head>
+      <Metatags title="Register" />
       <AppLayout
         subHeading="Become a part of the Bloggo family."
         headingEmoji="🎉"

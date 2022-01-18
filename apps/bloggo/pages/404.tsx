@@ -1,14 +1,12 @@
 import Head from 'next/head';
 import React from 'react';
 
-import { AppLayout, Button } from '@bloggo/ui';
+import { AppLayout, Button, Metatags } from '@bloggo/ui';
 
 const Page404: React.FC = () => {
   return (
     <>
-      <Head>
-        <title>404 || Bloggo</title>
-      </Head>
+      <Metatags title="404" />
       <AppLayout basicLayout>
         <div className="container relative py-16 lg:py-20">
           <header className="text-center max-w-2xl mx-auto space-y-7">

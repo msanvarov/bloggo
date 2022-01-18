@@ -1,10 +1,13 @@
 import React from 'react';
 
+import { Metatags } from '@bloggo/ui';
+
 const SudoIndexPage: React.FC = () => {
   return (
-    <main>
+    <>
+      <Metatags title="Sudo" />
       <h1>Sudo Index Page</h1>
-    </main>
+    </>
   );
 };
 

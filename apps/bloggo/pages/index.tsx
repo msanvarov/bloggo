@@ -15,6 +15,7 @@ import {
 import {
   AppLayout,
   LatestPostPreview,
+  Metatags,
   MostPopularPostsSlider,
   NewestAuthorsSlider,
 } from '@bloggo/ui';
@@ -81,9 +82,7 @@ const Index: React.FC<IndexPageProps> = ({
 
   return (
     <>
-      <Head>
-        <title>Home || Bloggo</title>
-      </Head>
+      <Metatags title="Home" />
       <AppLayout basicLayout>
         <section className="relative overflow-hidden">
           {/* Glassmorphism background */}

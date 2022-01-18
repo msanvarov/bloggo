@@ -17,6 +17,7 @@ import {
   Button,
   FormFeedback,
   Input,
+  Metatags,
   Toast,
   ToastProps,
 } from '@bloggo/ui';
@@ -104,9 +105,7 @@ const EnterPage: React.FC = () => {
   );
   return (
     <>
-      <Head>
-        <title>Finish Registration || Bloggo</title>
-      </Head>
+      <Metatags title="Finish Registration" />
       <AppLayout
         subHeading="Become a part of the Bloggo family."
         headingEmoji="🎉"

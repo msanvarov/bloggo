@@ -1,7 +1,5 @@
 import { doc, getFirestore } from 'firebase/firestore';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import Head from 'next/head';
-import Image from 'next/image';
 import React from 'react';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 
@@ -16,11 +14,10 @@ import {
 import {
   AppLayout,
   BadgeList,
-  BookmarkPostButton,
   ImageContainer,
+  Metatags,
   PostContent,
   PostEntryMetadata,
-  PostPreviewCardActionButtons,
 } from '@bloggo/ui';
 
 interface UserPostPageProps {
@@ -75,9 +72,7 @@ const UserPost: React.FC<UserPostPageProps> = ({ path, post }) => {
   console.log(postData);
   return (
     <>
-      <Head>
-        <title>{postData.title} || Bloggo </title>
-      </Head>
+      <Metatags title={postData.title} />
       <AppLayout basicLayout>
         <section className="pt-8 lg:pt-16">
           <header className="container rounded-xl">

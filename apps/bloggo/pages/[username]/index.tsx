@@ -15,6 +15,7 @@ import {
   Avatar,
   Button,
   ImageContainer,
+  Metatags,
   PostFilterListBox,
   PostPreviewCard,
 } from '@bloggo/ui';
@@ -59,9 +60,7 @@ export const getServerSideProps: GetServerSideProps<
 const UserProfilePage: React.FC<UserProfilePageProps> = ({ user, posts }) => {
   return (
     <>
-      <Head>
-        <title>User Profile</title>
-      </Head>
+      <Metatags title={`Profile ${user.username}`} />
       <AppLayout basicLayout>
         <section className="w-screen px-2 xl:max-w-screen-2xl mx-auto">
           <div className="rounded-3xl relative aspect-w-16 aspect-h-16 sm:aspect-h-9 lg:aspect-h-8 xl:aspect-h-7 overflow-hidden">
