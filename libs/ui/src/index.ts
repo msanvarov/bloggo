@@ -10,6 +10,8 @@ export * from './lib/input.component';
 export * from './lib/link.component';
 export * from './lib/footer.component';
 export * from './lib/meta-tags.component';
+export * from './lib/label.component';
+export * from './lib/auth-check.component';
 // folder modules
 export * from './lib/navbar';
 export * from './lib/buttons';
@@ -19,3 +21,4 @@ export * from './lib/image';
 export * from './lib/post';
 export * from './lib/sliders';
 export * from './lib/badge';
+export * from './lib/portal';

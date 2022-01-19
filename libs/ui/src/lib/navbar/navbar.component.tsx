@@ -1,14 +1,15 @@
-import classNames from 'classnames';
+import classnames from 'classnames';
 import { useRouter } from 'next/router';
+import { FiPenTool, FiSettings } from 'react-icons/fi';
 
 import { AppState, logout, useAppSelector } from '@bloggo/redux';
 
 import { Button } from '../buttons';
-import { CreatePost } from '../create-post.component';
 import { DarkModeToggleContainer } from '../dark-mode-toggle';
 import { Logo } from '../logo.component';
 import { MenuBar } from '../menu-bar.component';
 import { SearchDropdown } from '../search-dropdown.component';
+import { NavbarActionButton } from './navbar-action-button.component';
 import './navbar.module.scss';
 import { Navigation } from './navigation.component';
 
@@ -22,7 +23,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isTopOfPage }) => {
   const { user } = useAppSelector((state: AppState) => state.user);
   return (
     <div
-      className={classNames('main-nav', 'relative', 'z-10', {
+      className={classnames('main-nav', 'relative', 'z-10', {
         onTop: isTopOfPage,
         'not-on-top backdrop-filter': isTopOfPage,
       })}
@@ -38,10 +39,13 @@ export const Navbar: React.FC<NavbarProps> = ({ isTopOfPage }) => {
             <SearchDropdown />
             {user ? (
               <>
-                <CreatePost
-                  onClick={() => {
-                    console.log('Clicked create post');
-                  }}
+                <NavbarActionButton
+                  href="/portal/create-post"
+                  icon={<FiPenTool className="w-7 h-7" aria-hidden="true" />}
+                />
+                <NavbarActionButton
+                  href="/portal/edit-profile"
+                  icon={<FiSettings className="w-7 h-7" aria-hidden="true" />}
                 />
                 <div className="px-1">
                   <Button

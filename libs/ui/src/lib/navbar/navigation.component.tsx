@@ -12,18 +12,18 @@ const generateUUID = () => `nc_${nanoid()}`;
 const dashboardNavigationMenus: INavEntry[] = [
   {
     id: generateUUID(),
-    href: '/dashboard/metrics',
-    name: 'Metrics',
-  },
-  {
-    id: generateUUID(),
-    href: '/dashboard/profile',
-    name: 'Profile',
-  },
-  {
-    id: generateUUID(),
-    href: '/dashboard/posts',
+    href: '/portal/posts',
     name: 'Posts',
+  },
+  {
+    id: generateUUID(),
+    href: '/portal/liked-posts',
+    name: 'Liked Posts',
+  },
+  {
+    id: generateUUID(),
+    href: '/portal/edit-profile',
+    name: 'Profile',
   },
 ];
 
