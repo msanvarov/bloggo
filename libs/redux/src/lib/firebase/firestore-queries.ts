@@ -10,11 +10,13 @@ import {
   limit,
   orderBy,
   query,
+  setDoc,
   startAfter,
   where,
   writeBatch,
 } from 'firebase/firestore';
 
+import { IFirestorePostData, IFirestorePostPayload } from '.';
 import { db } from './firebase';
 import { docToJSON } from './helpers';
 
@@ -189,4 +191,20 @@ export const getPostPaths = async () => {
       params: { username, slug },
     };
   });
+};
+
+/**`
+ * Create a post for a user given the userId and post id (slug).
+ *
+ * @param  {string} userId
+ * @param  {string} slug
+ * @param  {IFirestorePostPayload} postPayload
+ */
+export const createPost = async (
+  userId: string,
+  slug: string,
+  postPayload: IFirestorePostPayload,
+) => {
+  const ref = doc(db, 'users', userId, 'posts', slug);
+  return await setDoc(ref, postPayload);
 };

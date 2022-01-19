@@ -1,3 +1,5 @@
+import { FieldValue } from 'firebase/firestore';
+
 export interface IFirestoreUserData {
   username: string;
   displayName: string;
@@ -26,4 +28,10 @@ export interface IFirestorePostData {
   href: string;
   description: string;
   likes: number;
+}
+
+export interface IFirestorePostPayload
+  extends Omit<IFirestorePostData, 'createdAt' | 'updatedAt'> {
+  createdAt: FieldValue;
+  updatedAt: FieldValue;
 }
