@@ -1,4 +1,4 @@
-import { doc, getFirestore } from 'firebase/firestore';
+import { doc } from 'firebase/firestore';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import React from 'react';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
@@ -6,6 +6,7 @@ import { useDocumentData } from 'react-firebase-hooks/firestore';
 import {
   AppState,
   IFirestorePostData,
+  db,
   getPostBySlugForUser,
   getPostPaths,
   getUserDataFromUsername,
@@ -64,7 +65,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 const UserPost: React.FC<UserPostPageProps> = ({ path, post }) => {
   const { user } = useAppSelector((state: AppState) => state.user);
-  const postRef = doc(getFirestore(), path);
+  const postRef = doc(db, path);
   const [realtimePost] = useDocumentData(postRef);
 
   // Returns the staticly generated post or the hydrated post from firebase

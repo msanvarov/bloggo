@@ -1,7 +1,6 @@
 import classnames from 'classnames';
 import { useFormik } from 'formik';
 import { debounce } from 'lodash';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useCallback, useEffect, useState } from 'react';
 import * as Yup from 'yup';
