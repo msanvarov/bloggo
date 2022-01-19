@@ -133,7 +133,7 @@ const CreatePostPage: React.FC = () => {
                       type="text"
                       id="title"
                       name="title"
-                      placeholder="How is this app so cool?"
+                      placeholder="Post title"
                       className={classNames(
                         'mt-1',
                         'invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500',

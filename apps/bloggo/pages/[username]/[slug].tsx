@@ -63,17 +63,20 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-const UserPost: React.FC<UserPostPageProps> = ({ path, post }) => {
+const UserPost: React.FC<UserPostPageProps> = ({
+  path,
+  post: prefetchedPost,
+}) => {
   const { user } = useAppSelector((state: AppState) => state.user);
   const postRef = doc(db, path);
   const [realtimePost] = useDocumentData(postRef);
 
   // Returns the staticly generated post or the hydrated post from firebase
-  const postData = realtimePost || post;
-  console.log(postData);
+  const post = realtimePost || prefetchedPost;
+
   return (
     <>
-      <Metatags title={postData.title} />
+      <Metatags title={post.title} />
       <AppLayout basicLayout>
         <section className="pt-8 lg:pt-16">
           <header className="container rounded-xl">
@@ -83,11 +86,11 @@ const UserPost: React.FC<UserPostPageProps> = ({ path, post }) => {
               <div className="space-y-5">
                 <BadgeList badgeClassName="!px-3" />
                 <h1 className="text-neutral-900 font-semibold text-3xl md:text-4xl md:!leading-[120%] lg:text-5xl dark:text-neutral-100 max-w-4xl">
-                  {postData.title}
+                  {post.title}
                 </h1>
-                {postData.description && (
+                {post.description && (
                   <span className="block text-base text-neutral-500 md:text-lg dark:text-neutral-400 pb-1">
-                    {postData.description}
+                    {post.description}
                   </span>
                 )}
                 <div className="w-full border-b border-neutral-100 dark:border-neutral-800"></div>
@@ -97,10 +100,10 @@ const UserPost: React.FC<UserPostPageProps> = ({ path, post }) => {
                     className="leading-none flex-shrink-0"
                     meta={{
                       author: {
-                        username: postData.username,
+                        username: post.username,
                       },
                       readingTime: '6 min read',
-                      date: postData.updatedAt,
+                      date: post.updatedAt,
                     }}
                     avatarRounded="rounded-full shadow-inner"
                   />
@@ -122,7 +125,7 @@ const UserPost: React.FC<UserPostPageProps> = ({ path, post }) => {
           <ImageContainer
             containerClassName="container my-10 sm:my-12"
             className="object-cover w-full h-full rounded-xl"
-            src="https://images.pexels.com/photos/4050347/pexels-photo-4050347.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
+            src={post.thumbnail}
             prevImageHorizontal
           />
           <div className="container">

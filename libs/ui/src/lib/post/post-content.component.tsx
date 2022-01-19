@@ -2,6 +2,8 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
+import { Markdown } from '../markdown.component';
+
 type PostContentProps = {
   content: string;
 };
@@ -15,7 +17,7 @@ export const PostContent: React.FC<PostContentProps> = ({ content }) => {
         id="single-entry-content"
         className="prose prose-sm !max-w-screen-md sm:prose lg:prose-lg mx-auto dark:prose-dark"
       >
-        <ReactMarkdown children={content} remarkPlugins={[remarkGfm]} />
+        <Markdown {...{ content }} />
       </div>
       {/* POST TAGS */}
       {/* AUTHOR DATA */}
