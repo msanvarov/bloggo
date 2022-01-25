@@ -66,7 +66,7 @@ export const PostForm: React.FC<PostFormProps> = ({
     },
     onSubmit: async ({ title, description, published }) => {
       try {
-        console.log(defaultValues, title, description, content, published);
+        console.log(defaultValues, title, description, published);
       } catch (error) {
         console.error(error);
         setToast({
@@ -184,7 +184,7 @@ export const PostForm: React.FC<PostFormProps> = ({
 
             <Editor
               editorState={editorState}
-              editorClassName="mt-1 border-2 "
+              editorClassName="mt-1 border-2"
               onEditorStateChange={(editor: EditorState) =>
                 setEditorState(editor)
               }
