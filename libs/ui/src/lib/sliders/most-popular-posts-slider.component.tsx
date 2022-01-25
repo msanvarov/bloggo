@@ -117,7 +117,7 @@ export const MostPopularPostsSlider: React.FC<MostPopularPostsSliderProps> = ({
                     classBgIcon="h-8 w-8 bg-neutral-50 bg-opacity-20 hover:bg-opacity-50 dark:bg-neutral-800 dark:bg-opacity-30 dark:hover:bg-opacity-50"
                     {...{
                       commentCount: 21,
-                      likes: post.likes,
+                      likes: post.likeCount,
                       href: post.href,
                       isBookmarked: false,
                       postId: `${post.uid}/${post.slug}`,

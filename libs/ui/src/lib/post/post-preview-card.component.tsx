@@ -24,9 +24,6 @@ export const PostPreviewCard: React.FC<PostPreviewCardProps> = ({
   isAuthorHidden = false,
   ratio = 'aspect-w-4 aspect-h-3',
 }) => {
-  const { uid, title, thumbnail, href, createdAt, updatedAt, likes, slug } =
-    post;
-
   return (
     <div
       className={classNames(
@@ -41,14 +38,18 @@ export const PostPreviewCard: React.FC<PostPreviewCardProps> = ({
           <PostThumbnail
             {...{
               media: {
-                src: thumbnail,
+                src: post.thumbnail,
                 type: 'image',
               },
             }}
           />
         </div>
       </div>
-      <Link {...{ href }} className="absolute inset-0" colorClass="" />
+      <Link
+        {...{ href: post.href }}
+        className="absolute inset-0"
+        colorClass=""
+      />
       <span className="absolute top-3 inset-x-3">
         <div className="flex flex-wrap space-x-2">
           {/* badges */}
@@ -58,13 +59,13 @@ export const PostPreviewCard: React.FC<PostPreviewCardProps> = ({
 
       <div className="p-4 flex flex-col flex-grow space-y-3">
         {!isAuthorHidden ? (
-          <PostPreviewCardAuthor {...{ author, date: updatedAt }} />
+          <PostPreviewCardAuthor {...{ author, date: post.updatedAt }} />
         ) : (
-          <span className="text-xs text-neutral-500">{createdAt}</span>
+          <span className="text-xs text-neutral-500">{post.createdAt}</span>
         )}
         <h2 className="nc-card-title block text-base font-semibold text-neutral-900 dark:text-neutral-100 ">
-          <Link {...{ href }} className="line-clamp-2" colorClass="">
-            {title}
+          <Link {...{ href: post.href }} className="line-clamp-2" colorClass="">
+            {post.title}
           </Link>
         </h2>
         <div className="flex items-end justify-between mt-auto">
@@ -72,10 +73,10 @@ export const PostPreviewCard: React.FC<PostPreviewCardProps> = ({
             className="relative"
             {...{
               commentCount: 21,
-              likes,
-              href,
+              likes: post.likeCount,
+              href: post.href,
               isBookmarked: false,
-              postId: `${uid}/${slug}`,
+              postId: `${post.uid}/${post.slug}`,
             }}
           />
         </div>

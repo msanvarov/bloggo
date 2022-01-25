@@ -62,7 +62,7 @@ const CreatePostPage: React.FC = () => {
               createdAt: serverTimestamp(),
               updatedAt: serverTimestamp(),
               href: `${username}/${slug}`,
-              likes: 0,
+              likeCount: 0,
               published: false,
               thumbnail:
                 'https://images.pexels.com/photos/1591056/pexels-photo-1591056.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',

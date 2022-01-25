@@ -23,7 +23,7 @@ import {
 
 interface UserPostPageProps {
   path: string;
-  post: IFirestorePostData;
+  post: IFirestorePostData | null;
 }
 
 export const getStaticProps: GetStaticProps<UserPostPageProps> = async ({
@@ -40,7 +40,7 @@ export const getStaticProps: GetStaticProps<UserPostPageProps> = async ({
       userDoc.ref.path,
       slug,
     );
-    post = postData as IFirestorePostData;
+    post = postData as IFirestorePostData | null;
     path = postPath;
   }
 
@@ -76,62 +76,65 @@ const UserPost: React.FC<UserPostPageProps> = ({
 
   return (
     <>
-      <Metatags title={post.title} />
+      <Metatags title={post?.title || "Post doesn't exist"} />
       <AppLayout basicLayout>
-        <section className="pt-8 lg:pt-16">
-          <header className="container rounded-xl">
-            {/*  HEADER */}
+        {post ? (
+          <section className="pt-8 lg:pt-16">
+            <header className="container rounded-xl">
+              {/*  HEADER */}
+              <div className="max-w-screen-md mx-auto">
+                <div className="space-y-5">
+                  <BadgeList badgeClassName="!px-3" />
+                  <h1 className="text-neutral-900 font-semibold text-3xl md:text-4xl md:!leading-[120%] lg:text-5xl dark:text-neutral-100 max-w-4xl">
+                    {post.title}
+                  </h1>
+                  {post.description && (
+                    <span className="block text-base text-neutral-500 md:text-lg dark:text-neutral-400 pb-1">
+                      {post.description}
+                    </span>
+                  )}
+                  <div className="w-full border-b border-neutral-100 dark:border-neutral-800"></div>
+                  <div className="flex flex-col sm:flex-row justify-between sm:items-end space-y-5 sm:space-y-0 sm:space-x-5">
+                    <PostEntryMetadata
+                      size="large"
+                      className="leading-none flex-shrink-0"
+                      meta={{
+                        author: {
+                          username: post.username,
+                        },
+                        readingTime: '6 min read',
+                        date: post.updatedAt,
+                      }}
+                      avatarRounded="rounded-full shadow-inner"
+                    />
+                    <section>
+                      <div className="flex flex-row space-x-2.5 items-center">
+                        {/* Like and Comment buttons */}
+                        <div className="px-1">
+                          <div className="border-l border-neutral-200 dark:border-neutral-700 h-6" />
+                        </div>
 
-            <div className="max-w-screen-md mx-auto">
-              <div className="space-y-5">
-                <BadgeList badgeClassName="!px-3" />
-                <h1 className="text-neutral-900 font-semibold text-3xl md:text-4xl md:!leading-[120%] lg:text-5xl dark:text-neutral-100 max-w-4xl">
-                  {post.title}
-                </h1>
-                {post.description && (
-                  <span className="block text-base text-neutral-500 md:text-lg dark:text-neutral-400 pb-1">
-                    {post.description}
-                  </span>
-                )}
-                <div className="w-full border-b border-neutral-100 dark:border-neutral-800"></div>
-                <div className="flex flex-col sm:flex-row justify-between sm:items-end space-y-5 sm:space-y-0 sm:space-x-5">
-                  <PostEntryMetadata
-                    size="large"
-                    className="leading-none flex-shrink-0"
-                    meta={{
-                      author: {
-                        username: post.username,
-                      },
-                      readingTime: '6 min read',
-                      date: post.updatedAt,
-                    }}
-                    avatarRounded="rounded-full shadow-inner"
-                  />
-                  <section>
-                    <div className="flex flex-row space-x-2.5 items-center">
-                      {/* Like and Comment buttons */}
-                      <div className="px-1">
-                        <div className="border-l border-neutral-200 dark:border-neutral-700 h-6" />
+                        {/* Bookmark button */}
+                        {/* Share buttons */}
                       </div>
-
-                      {/* Bookmark button */}
-                      {/* Share buttons */}
-                    </div>
-                  </section>
+                    </section>
+                  </div>
                 </div>
               </div>
+            </header>
+            <ImageContainer
+              containerClassName="container my-10 sm:my-12"
+              className="object-cover w-full h-full rounded-xl"
+              src={post.thumbnail}
+              prevImageHorizontal
+            />
+            <div className="container">
+              <PostContent content={post.content} />
             </div>
-          </header>
-          <ImageContainer
-            containerClassName="container my-10 sm:my-12"
-            className="object-cover w-full h-full rounded-xl"
-            src={post.thumbnail}
-            prevImageHorizontal
-          />
-          <div className="container">
-            <PostContent content={post.content} />
-          </div>
-        </section>
+          </section>
+        ) : (
+          <p>Post not found</p>
+        )}
       </AppLayout>
     </>
   );

@@ -1,14 +1,15 @@
 import classNames from 'classnames';
+import { doc, increment, writeBatch } from 'firebase/firestore';
 import React, { useState } from 'react';
+import { useDocument } from 'react-firebase-hooks/firestore';
+
+import { AppState, db, useAppSelector } from '@bloggo/redux';
 
 type LikePostButtonProps = {
   className?: string;
+  likes: number;
+  uid: string;
   postId: string;
-  onClickLike?: (id: string) => void;
-  like: {
-    count: number;
-    isLiked: boolean;
-  };
 };
 
 const formatLikeNumber = (number: number): string => {
@@ -23,31 +24,56 @@ const formatLikeNumber = (number: number): string => {
 
 export const LikePostButton: React.FC<LikePostButtonProps> = ({
   className = 'px-3 h-8 text-xs',
+  likes,
+  uid,
   postId,
-  like,
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onClickLike = () => {},
 }) => {
-  // TODO: redux to track likes
+  const { user } = useAppSelector((state: AppState) => state.user);
+  const likeRef = doc(db, `${postId}/likes/${uid}`);
+  const [likeDoc] = useDocument(likeRef);
   const [isLikePostButtonClicked, setIsLikePostButtonClicked] =
-    useState<boolean>(false);
+    useState<boolean>(likeDoc?.exists() ?? false);
+
+  // Create a user-to-post relationship
+  const addLike = async () => {
+    const uid = user?.uid;
+    if (uid) {
+      const batch = writeBatch(db);
+
+      batch.update(doc(db, postId), { likes: increment(1) });
+      batch.set(likeRef, { uid });
+
+      await batch.commit();
+    }
+  };
+
+  // Remove a user-to-post relationship
+  const removeLike = async () => {
+    const batch = writeBatch(db);
+
+    batch.update(doc(db, postId), { likes: increment(-1) });
+    batch.delete(likeRef);
+
+    await batch.commit();
+  };
 
   const isLiked = () => {
-    return isLikePostButtonClicked || like.isLiked;
+    return isLikePostButtonClicked;
   };
   const getLikeCount = () => {
-    if (isLikePostButtonClicked || like.isLiked) {
-      return like.count + 1;
+    if (isLikePostButtonClicked) {
+      return likes + 1;
     }
-    return like.count;
+    return likes;
   };
   const handleOnLikeButtonClick = () => {
     if (isLiked()) {
+      removeLike();
       setIsLikePostButtonClicked(false);
     } else {
+      addLike();
       setIsLikePostButtonClicked(true);
     }
-    onClickLike(postId);
   };
   return (
     <button

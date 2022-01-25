@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { AppState, useAppSelector } from '@bloggo/redux';
+
 import { BookmarkPostButton, LikePostButton } from '../buttons';
 import { CommentOnPostButton } from '../buttons/comment-on-post-button.component';
 
@@ -30,18 +32,17 @@ export const PostPreviewCardActionButtons: React.FC<
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   onClickLike = () => {},
 }) => {
+  const { user } = useAppSelector((state: AppState) => state.user);
   return (
     <>
       <div className={`flex items-center space-x-2 ${className}`}>
-        <LikePostButton
-          className={itemClass}
-          like={{
-            count: likes,
-            isLiked: false,
-          }}
-          onClickLike={onClickLike}
-          postId={postId}
-        />
+        {user?.uid && (
+          <LikePostButton
+            className={itemClass}
+            {...{ likes, postId, uid: user.uid }}
+          />
+        )}
+
         <CommentOnPostButton
           href={href}
           commentCount={commentCount}

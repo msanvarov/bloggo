@@ -48,7 +48,13 @@ export const UserPostsList: React.FC<UserPostsListProps> = ({ uid }) => {
                   />
                   <div className="ml-4 flex-grow">
                     <h2 className="inline-flex line-clamp-2 text-sm font-semibold  dark:text-neutral-300">
-                      {postData.title}
+                      <Link
+                        href={`/${postData.username}/${postData.slug}`}
+                        className=""
+                        colorClass=""
+                      >
+                        {postData.title}
+                      </Link>
                     </h2>
                   </div>
                 </div>

@@ -6,12 +6,16 @@ import { DocumentSnapshot, Timestamp } from 'firebase/firestore';
  */
 export const docToJSON = (doc: DocumentSnapshot) => {
   const data = doc.data();
-  return {
-    ...data,
-    // TIMESTAMP is not JSON serializable. Must be converted to milliseconds
-    createdAt: data.createdAt.toMillis(),
-    updatedAt: data.updatedAt.toMillis(),
-  };
+  if (data) {
+    return {
+      ...data,
+      // TIMESTAMP is not JSON serializable. Must be converted to milliseconds
+      createdAt: data.createdAt.toMillis(),
+      updatedAt: data.updatedAt.toMillis(),
+    };
+  } else {
+    return null;
+  }
 };
 
 export const fromMillis = Timestamp.fromMillis;

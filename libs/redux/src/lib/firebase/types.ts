@@ -27,7 +27,7 @@ export interface IFirestorePostData {
   thumbnail: string;
   href: string;
   description: string;
-  likes: number;
+  likeCount: number;
 }
 
 export interface IFirestorePostPayload

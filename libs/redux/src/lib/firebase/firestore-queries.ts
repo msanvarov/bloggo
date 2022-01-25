@@ -154,7 +154,7 @@ export const getPostsByLikesWithLimit = async (postLimit: number) => {
   const q = query(
     ref,
     where('published', '==', true),
-    orderBy('likes', 'desc'),
+    orderBy('likeCount', 'desc'),
     limit(postLimit),
   );
   const querySnapshot = await getDocs(q);

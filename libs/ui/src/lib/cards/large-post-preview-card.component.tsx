@@ -21,7 +21,6 @@ const LargePostPreviewCard: React.FC<LargePostPreviewCardProps> = ({
   size = 'normal',
   post,
 }) => {
-  const { title, thumbnail, href, description, likes, slug, username } = post;
   return (
     <div
       className={`group relative flex flex-col  [ nc-box-has-hover ] [ nc-dark-box-bg-has-hover ] overflow-hidden ${className}`}
@@ -30,13 +29,17 @@ const LargePostPreviewCard: React.FC<LargePostPreviewCardProps> = ({
         <ImageContainer
           prevImageHorizontal
           containerClassName="absolute inset-0"
-          src={thumbnail}
-          alt={title}
+          src={post.thumbnail}
+          alt={post.title}
         />
       </span>
 
       <SharePostButtonContainer className="absolute hidden md:grid gap-[5px] right-4 top-4 opacity-0 z-[-1] group-hover:z-10 group-hover:opacity-100 transition-all duration-300" />
-      <Link {...{ href }} className="absolute inset-0" colorClass="" />
+      <Link
+        {...{ href: post.href }}
+        className="absolute inset-0"
+        colorClass=""
+      />
 
       <div className="p-4 sm:p-5 flex flex-col">
         <div className="space-y-3">
@@ -46,12 +49,16 @@ const LargePostPreviewCard: React.FC<LargePostPreviewCardProps> = ({
               size === 'large' ? 'text-lg sm:text-2xl' : 'text-base'
             }`}
           >
-            <Link {...{ href }} className="line-clamp-2" colorClass="">
-              {title}
+            <Link
+              {...{ href: post.href }}
+              className="line-clamp-2"
+              colorClass=""
+            >
+              {post.title}
             </Link>
           </h2>
           <span className="block text-neutral-500 dark:text-neutral-400 text-sm line-clamp-2">
-            {description}
+            {post.description}
           </span>
         </div>
         <Link
@@ -76,7 +83,7 @@ const LargePostPreviewCard: React.FC<LargePostPreviewCardProps> = ({
               className={`flex items-center mt-1 text-xs text-neutral-500 dark:text-neutral-400`}
             >
               <span>
-                <Moment format="LL">{post.updatedAt}</Moment>
+                <Moment format="LL">{post.createdAt}</Moment>
               </span>
             </span>
           </div>
@@ -85,10 +92,10 @@ const LargePostPreviewCard: React.FC<LargePostPreviewCardProps> = ({
           <PostPreviewCardActionButtons
             {...{
               commentCount: 21,
-              likes,
-              href,
+              likes: post.likeCount,
+              href: post.href,
               isBookmarked: true,
-              postId: `${username}/${slug}`,
+              postId: `${post.uid}/${post.slug}`,
             }}
           />
         </div>
