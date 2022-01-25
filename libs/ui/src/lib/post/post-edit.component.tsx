@@ -3,11 +3,11 @@ import React from 'react';
 import { useDocumentDataOnce } from 'react-firebase-hooks/firestore';
 import { Data } from 'react-firebase-hooks/firestore/dist/firestore/types';
 
-import { IFirestorePostData, auth, db } from '@bloggo/redux';
+import { IFirestorePostData, db } from '@bloggo/redux';
 
-import { PostForm } from '.';
 import { BadgeList } from '../badge';
 import { ImageContainer } from '../image';
+import { PostForm } from './post-form.component';
 
 type PostEditProps = {
   className?: string;
@@ -40,7 +40,10 @@ export const PostEdit: React.FC<PostEditProps> = ({ uid, slug }) => {
       <ImageContainer
         containerClassName="container my-10 sm:my-12"
         className="object-cover w-full h-full rounded-xl"
-        src={post['thumbnail']}
+        src={
+          post['thumbnail'] ||
+          'https://images.pexels.com/photos/1591056/pexels-photo-1591056.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500'
+        }
         prevImageHorizontal
       />
       <div className="container">
