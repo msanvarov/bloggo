@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 import { useFormik } from 'formik';
 import { debounce } from 'lodash';
 import { useRouter } from 'next/router';
@@ -79,10 +79,11 @@ const EnterPage: React.FC = () => {
           },
           type: 'error',
         });
-        setTimeout(() => {
-          setToast((prevToast) => ({ ...prevToast, isOpen: false }));
-        }, 2000);
       }
+
+      setTimeout(() => {
+        setToast((prevToast) => ({ ...prevToast, isOpen: false }));
+      }, 2000);
     },
   });
   // redirect to home page if user is logged in
@@ -127,7 +128,7 @@ const EnterPage: React.FC = () => {
                 id="username"
                 name="username"
                 placeholder="sal"
-                className={classnames('mt-1', {
+                className={classNames('mt-1', {
                   'border-pink-500 text-pink-600':
                     touched.username && errors.username,
                 })}
