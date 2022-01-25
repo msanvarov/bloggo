@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 import React, { useState } from 'react';
 
 type BookmarkPostButtonProps = {
@@ -28,7 +28,7 @@ export const BookmarkPostButton: React.FC<BookmarkPostButtonProps> = ({
 
   return (
     <button
-      className={classnames(
+      className={classNames(
         'bookmark-post-button',
         'relative rounded-full flex items-center justify-center',
         'focus:outline-none',

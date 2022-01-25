@@ -1,5 +1,5 @@
 import { Switch } from '@headlessui/react';
-import classnames from 'classnames';
+import classNames from 'classnames';
 import React, { SelectHTMLAttributes, useState } from 'react';
 
 interface FormSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {

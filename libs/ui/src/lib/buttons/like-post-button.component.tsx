@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 import React, { useState } from 'react';
 
 type LikePostButtonProps = {
@@ -51,7 +51,7 @@ export const LikePostButton: React.FC<LikePostButtonProps> = ({
   };
   return (
     <button
-      className={classnames(
+      className={classNames(
         'like-post-button',
         'relative min-w-[68px] flex items-center rounded-full leading-none group transition-colors',
         className,

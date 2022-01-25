@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Disclosure } from '@headlessui/react';
-import classnames from 'classnames';
+import classNames from 'classnames';
 import { entries, groupBy, map } from 'lodash';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -34,7 +34,7 @@ export const MobileNavbar: React.FC<MobileNavbarProps> = ({ onClose }) => {
               }}
             >
               <a
-                className={classnames(
+                className={classNames(
                   'flex px-4 py-2.5 text-neutral-900 dark:text-neutral-200 text-sm font-medium rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 mt-[2px]',
                   { 'text-secondary': router.pathname === i.href },
                 )}
@@ -85,7 +85,7 @@ export const MobileNavbar: React.FC<MobileNavbarProps> = ({ onClose }) => {
         </div>
         <span className="absolute right-2 top-2 p-1">
           <button
-            className={classnames(
+            className={classNames(
               'w-8 h-8 flex items-center justify-center rounded-full text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-700',
               'focus:outline-none',
             )}
@@ -117,7 +117,7 @@ export const MobileNavbar: React.FC<MobileNavbarProps> = ({ onClose }) => {
                       }}
                     >
                       <a
-                        className={classnames(
+                        className={classNames(
                           'flex w-full items-center py-2.5 px-4 font-medium uppercase tracking-wide text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg',
                           {
                             'text-secondary':

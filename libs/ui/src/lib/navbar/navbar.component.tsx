@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import { FiPenTool, FiSettings } from 'react-icons/fi';
 
@@ -23,7 +23,7 @@ export const Navbar: React.FC<NavbarProps> = ({ isTopOfPage }) => {
   const { user } = useAppSelector((state: AppState) => state.user);
   return (
     <div
-      className={classnames('main-nav', 'relative', 'z-10', {
+      className={classNames('main-nav', 'relative', 'z-10', {
         onTop: isTopOfPage,
         'not-on-top backdrop-filter': isTopOfPage,
       })}

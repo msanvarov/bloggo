@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { Popover, Transition } from '@headlessui/react';
-import classnames from 'classnames';
+import classNames from 'classnames';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { Fragment, useEffect, useState } from 'react';
@@ -149,7 +149,7 @@ export const NavigationEntry: React.FC<NavigationEntryProps> = ({
         <a
           target={entry.targetBlank ? '_blank' : undefined}
           rel="noopener noreferrer"
-          className={classnames(
+          className={classNames(
             'flex items-center font-normal text-neutral-6000 dark:text-neutral-300 py-2 px-4 rounded-md hover:text-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 dark:hover:text-neutral-200',
             {
               '!font-semibold !text-neutral-700 dark:!text-neutral-200':
@@ -177,7 +177,7 @@ export const NavigationEntry: React.FC<NavigationEntryProps> = ({
         }}
       >
         <a
-          className={classnames(
+          className={classNames(
             'inline-flex items-center text-sm xl:text-base font-normal text-neutral-700 dark:text-neutral-300 py-2 px-4 xl:px-5 rounded-full hover:text-neutral-900 hover:bg-neutral-100 dark:hover:bg-neutral-800 dark:hover:text-neutral-200',
             {
               '!font-semibold !text-neutral-900 bg-neutral-100 dark:bg-neutral-800 dark:!text-neutral-100':

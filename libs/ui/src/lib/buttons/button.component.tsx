@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import classnames from 'classnames';
+import classNames from 'classnames';
 import Link from 'next/link';
 import React, { ButtonHTMLAttributes } from 'react';
 
@@ -32,7 +32,7 @@ export const Button: React.FC<ButtonProps> = ({
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   onClick = () => {},
 }) => {
-  const classes = classnames(
+  const classes = classNames(
     'relative h-auto inline-flex items-center justify-center rounded-full transition-colors',
     fontSize,
     sizeClass,

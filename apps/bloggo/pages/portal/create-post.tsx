@@ -1,9 +1,10 @@
 import classNames from 'classnames';
-import { FieldValue, serverTimestamp } from 'firebase/firestore';
+import { serverTimestamp } from 'firebase/firestore';
 import { useFormik } from 'formik';
 import { kebabCase } from 'lodash';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
+import ReactTooltip from 'react-tooltip';
 import * as Yup from 'yup';
 
 import {
@@ -128,7 +129,11 @@ const CreatePostPage: React.FC = () => {
                         message={errors.title}
                       ></FormFeedback>
                     )}
-                    <Label>Post Title *</Label>
+                    <Label>
+                      <span data-tip="Note: this will determine the unique url for this post.">
+                        Post Title *
+                      </span>
+                    </Label>
                     <Input
                       type="text"
                       id="title"
@@ -156,6 +161,7 @@ const CreatePostPage: React.FC = () => {
         </AuthCheck>
       </AppLayout>
 
+      <ReactTooltip />
       <Toast {...toast} />
     </>
   );

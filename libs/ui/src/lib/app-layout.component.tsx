@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 import { getAuth } from 'firebase/auth';
 import { doc, getFirestore, onSnapshot } from 'firebase/firestore';
 import React, { useEffect } from 'react';
@@ -65,10 +65,10 @@ export const AppLayout: React.FC<AppLayoutProps> = ({
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>{children}</>
   ) : (
-    <section className={classnames('relative', className)}>
+    <section className={classNames('relative', className)}>
       {/* background */}
       <div
-        className={classnames(
+        className={classNames(
           'absolute h-[225px] top-0 left-0 right-0 w-full bg-primary-100 dark:bg-neutral-800 bg-opacity-25 dark:bg-opacity-40',
         )}
       />

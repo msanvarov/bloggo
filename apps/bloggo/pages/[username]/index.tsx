@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import React from 'react';
@@ -98,7 +98,7 @@ const UserProfilePage: React.FC<UserProfilePageProps> = ({ user, posts }) => {
               <TabList className="flex sm:space-x-2">
                 <Tab className="relative">
                   <button
-                    className={classnames(
+                    className={classNames(
                       'block !leading-none font-medium',
                       'px-5 py-2.5 text-sm sm:text-base sm:px-6 sm:py-3 capitalize',
                       'rounded-full',
@@ -111,7 +111,7 @@ const UserProfilePage: React.FC<UserProfilePageProps> = ({ user, posts }) => {
                 </Tab>
                 <Tab className="relative">
                   <button
-                    className={classnames(
+                    className={classNames(
                       'block !leading-none font-medium',
                       'px-5 py-2.5 text-sm sm:text-base sm:px-6 sm:py-3 capitalize',
                       'rounded-full',

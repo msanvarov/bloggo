@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 import React from 'react';
 import { FiXCircle } from 'react-icons/fi';
 
@@ -12,7 +12,7 @@ export const FormFeedback: React.FC<FormFeedbackProps> = ({
 }) => {
   return (
     <div
-      className={classnames('rounded-md p-4', {
+      className={classNames('rounded-md p-4', {
         'bg-red-50': type === 'error',
         'bg-yellow-50': type === 'warning',
         'bg-blue-50': type === 'info',
@@ -22,7 +22,7 @@ export const FormFeedback: React.FC<FormFeedbackProps> = ({
       <div className="flex">
         <div className="flex-shrink-0">
           <FiXCircle
-            className={classnames('h-5 w-5', {
+            className={classNames('h-5 w-5', {
               'text-red-400': type === 'error',
               'text-yellow-400': type === 'warning',
               'text-blue-400': type === 'info',
@@ -33,7 +33,7 @@ export const FormFeedback: React.FC<FormFeedbackProps> = ({
         </div>
         <div className="ml-3">
           <h3
-            className={classnames('text-sm font-medium', {
+            className={classNames('text-sm font-medium', {
               'text-red-800': type === 'error',
               'text-yellow-800': type === 'warning',
               'text-blue-800': type === 'info',

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import classnames from 'classnames';
+import classNames from 'classnames';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
@@ -22,7 +22,7 @@ export const Link: React.FC<LinkProps> = ({
   return (
     <NextLink {...rest}>
       <a
-        className={classnames(colorClass, className, {
+        className={classNames(colorClass, className, {
           [activeClassName]: router.asPath === rest.href,
         })}
       >

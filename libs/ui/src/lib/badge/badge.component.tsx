@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 import React from 'react';
 
 import { Link } from '../link.component';
@@ -26,7 +26,7 @@ export const Badge: React.FC<BadgeProps> = ({
   color = 'blue',
   href,
 }) => {
-  const classes = classnames(
+  const classes = classNames(
     'relative inline-flex px-2.5 py-1 rounded-full font-medium text-xs',
     className,
   );
@@ -73,7 +73,7 @@ export const Badge: React.FC<BadgeProps> = ({
   return href ? (
     <Link
       {...{ href }}
-      className={classnames(
+      className={classNames(
         `transition-colors hover:text-white duration-300`,
         classes,
         getColorClass(),
@@ -82,6 +82,6 @@ export const Badge: React.FC<BadgeProps> = ({
       {name}
     </Link>
   ) : (
-    <span className={classnames(classes, getColorClass(false))}>{name}</span>
+    <span className={classNames(classes, getColorClass(false))}>{name}</span>
   );
 };

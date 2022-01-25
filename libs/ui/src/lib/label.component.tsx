@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 import React from 'react';
 
 type LabelProps = {
@@ -8,7 +8,7 @@ type LabelProps = {
 export const Label: React.FC<LabelProps> = ({ className = '', children }) => {
   return (
     <span
-      className={classnames(
+      className={classNames(
         className,
         `text-neutral-800 font-medium text-sm dark:text-neutral-300`,
       )}

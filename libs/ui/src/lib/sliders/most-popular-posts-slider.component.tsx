@@ -1,5 +1,5 @@
 import { Transition } from '@headlessui/react';
-import classnames from 'classnames';
+import classNames from 'classnames';
 import React, { Fragment, useState } from 'react';
 import Moment from 'react-moment';
 
@@ -42,7 +42,7 @@ export const MostPopularPostsSlider: React.FC<MostPopularPostsSliderProps> = ({
     });
   };
   return (
-    <div className={classnames('relative', className)}>
+    <div className={classNames('relative', className)}>
       {heading && (
         <SectionHeading desc="Discover the most fascinating trending posts.">
           {heading}

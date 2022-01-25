@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 import React from 'react';
 import { FiGithub } from 'react-icons/fi';
 
@@ -21,7 +21,7 @@ export const SocialMediaLinks: React.FC<SocialsListProps> = ({
 }) => {
   return (
     <nav
-      className={classnames(
+      className={classNames(
         'flex space-x-2.5 text-2xl text-neutral-6000 dark:text-neutral-300',
         className,
       )}
@@ -29,7 +29,7 @@ export const SocialMediaLinks: React.FC<SocialsListProps> = ({
       {socials.map((item, i) => (
         <a
           key={i}
-          className={classnames(itemClass)}
+          className={classNames(itemClass)}
           href={item.href}
           target="_blank"
           rel="noopener noreferrer"

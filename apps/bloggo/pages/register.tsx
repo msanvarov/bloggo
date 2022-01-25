@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 import { useFormik } from 'formik';
 import { debounce } from 'lodash';
 import Head from 'next/head';
@@ -139,7 +139,9 @@ const RegisterPage: React.FC = () => {
             {oauthProviders.map((item, index) => (
               <a
                 key={index}
-                onClick={() => item.onClick(() => router.replace('/enter'))}
+                onClick={() =>
+                  item.onClick(() => router.replace('/onboarding'))
+                }
                 className="nc-will-change-transform flex w-full rounded-lg bg-primary-50 dark:bg-neutral-800 px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]"
               >
                 <Image
@@ -179,7 +181,7 @@ const RegisterPage: React.FC = () => {
                 id="username"
                 name="username"
                 placeholder="sal"
-                className={classnames('mt-1', {
+                className={classNames('mt-1', {
                   'border-pink-500 text-pink-600':
                     touched.username && errors.username,
                 })}
@@ -205,7 +207,7 @@ const RegisterPage: React.FC = () => {
                 id="email"
                 name="email"
                 placeholder="sal@dezzign.studio"
-                className={classnames(
+                className={classNames(
                   'mt-1',
                   'invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500',
                 )}
@@ -237,7 +239,7 @@ const RegisterPage: React.FC = () => {
                 type={revealPassword ? 'text' : 'password'}
                 id="password"
                 name="password"
-                className={classnames(
+                className={classNames(
                   'mt-1',
                   'invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500',
                 )}

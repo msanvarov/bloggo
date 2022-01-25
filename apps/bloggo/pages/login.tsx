@@ -1,6 +1,5 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 import { useFormik } from 'formik';
-import Head from 'next/head';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
@@ -98,10 +97,10 @@ const LoginPage: React.FC = () => {
           },
           type: 'error',
         });
-        setTimeout(() => {
-          setToast((prevToast) => ({ ...prevToast, isOpen: false }));
-        }, 2000);
       }
+      setTimeout(() => {
+        setToast((prevToast) => ({ ...prevToast, isOpen: false }));
+      }, 2000);
     },
   });
 
@@ -125,7 +124,9 @@ const LoginPage: React.FC = () => {
             {oauthProviders.map((item, index) => (
               <a
                 key={index}
-                onClick={() => item.onClick(() => router.replace('/enter'))}
+                onClick={() =>
+                  item.onClick(() => router.replace('/onboarding'))
+                }
                 className="nc-will-change-transform flex w-full rounded-lg bg-primary-50 dark:bg-neutral-800 px-4 py-3 transform transition-transform sm:px-6 hover:translate-y-[-2px]"
               >
                 <Image
@@ -162,7 +163,7 @@ const LoginPage: React.FC = () => {
                 id="email"
                 name="email"
                 placeholder="sal@dezzign.studio"
-                className={classnames(
+                className={classNames(
                   'mt-1',
                   'invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500',
                 )}
@@ -198,7 +199,7 @@ const LoginPage: React.FC = () => {
                 type={revealPassword ? 'text' : 'password'}
                 id="password"
                 name="password"
-                className={classnames(
+                className={classNames(
                   'mt-1',
                   'invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500',
                 )}

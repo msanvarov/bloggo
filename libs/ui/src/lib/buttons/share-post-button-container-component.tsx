@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 import React from 'react';
 import { FiFacebook, FiInstagram, FiLinkedin, FiTwitter } from 'react-icons/fi';
 
@@ -29,7 +29,7 @@ export const SharePostButtonContainer: React.FC<
   itemClass = 'w-7 h-7 text-base hover:bg-neutral-100',
 }) => {
   return (
-    <div className={classnames(className)}>
+    <div className={classNames(className)}>
       {socials.map((item, index) => (
         <a
           key={index}

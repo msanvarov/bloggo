@@ -1,6 +1,5 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 import { GetServerSideProps } from 'next';
-import Head from 'next/head';
 import React, { useState } from 'react';
 
 import {
@@ -99,7 +98,7 @@ const Index: React.FC<IndexPageProps> = ({
             <section className="relative py-16">
               {/* background */}
               <div
-                className={classnames(
+                className={classNames(
                   `absolute inset-y-0 w-screen xl:max-w-[1340px] 2xl:max-w-screen-2xl left-1/2 transform -translate-x-1/2 xl:rounded-[40px] z-0`,
                   'bg-neutral-100 dark:bg-black dark:bg-opacity-20',
                 )}

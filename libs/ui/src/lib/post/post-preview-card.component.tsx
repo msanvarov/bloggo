@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 import React from 'react';
 
 import { IFirestorePostData, IFirestoreUserData } from '@bloggo/redux';
@@ -29,7 +29,7 @@ export const PostPreviewCard: React.FC<PostPreviewCardProps> = ({
 
   return (
     <div
-      className={classnames(
+      className={classNames(
         'relative flex flex-col group [ nc-box-has-hover ] [ nc-dark-box-bg-has-hover ]',
         className,
       )}
