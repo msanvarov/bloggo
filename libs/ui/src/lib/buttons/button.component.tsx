@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import classNames from 'classnames';
 import Link from 'next/link';
-import React, { ButtonHTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 
 type ButtonProps = {
   primary?: boolean;
@@ -15,9 +15,10 @@ type ButtonProps = {
   href?: string;
   targetBlank?: boolean;
   onClick?: () => void;
+  children?: ReactNode;
 };
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button = ({
   primary,
   className = 'text-neutral-700 dark:text-neutral-200',
   translate = '',
@@ -31,7 +32,7 @@ export const Button: React.FC<ButtonProps> = ({
   loading,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   onClick = () => {},
-}) => {
+}: ButtonProps) => {
   const classes = classNames(
     'relative h-auto inline-flex items-center justify-center rounded-full transition-colors',
     fontSize,

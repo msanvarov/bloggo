@@ -2,21 +2,22 @@
 import classNames from 'classnames';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import { useRouter } from 'next/router';
-import React from 'react';
+import { ReactNode } from 'react';
 
 interface LinkProps extends NextLinkProps {
   className?: string;
   colorClass?: string;
   activeClassName?: string;
+  children?: ReactNode;
 }
 
-export const Link: React.FC<LinkProps> = ({
+export const Link = ({
   className = 'font-medium',
   colorClass = 'text-primary-6000 hover:text-primary-800 dark:text-primary-500 dark:hover:text-primary-6000',
   activeClassName = '',
   children,
   ...rest
-}) => {
+}: LinkProps) => {
   const router = useRouter();
 
   return (

@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { getAuth } from 'firebase/auth';
 import { doc, getFirestore, onSnapshot } from 'firebase/firestore';
-import React, { useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 import { setUser, setUsername, useAppDispatch } from '@bloggo/redux';
@@ -18,16 +18,17 @@ type AppLayoutProps = {
   subHeading?: string;
   // basic layout
   basicLayout?: boolean;
+  children: ReactNode;
 };
 
-export const AppLayout: React.FC<AppLayoutProps> = ({
+export const AppLayout = ({
   className = '',
   heading,
   subHeading,
   headingEmoji,
   children,
   basicLayout = false,
-}) => {
+}: AppLayoutProps) => {
   const dispath = useAppDispatch();
   const [user] = useAuthState(auth);
 

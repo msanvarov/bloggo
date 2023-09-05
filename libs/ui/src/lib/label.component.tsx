@@ -1,11 +1,12 @@
 import classNames from 'classnames';
-import React from 'react';
+import { ReactNode } from 'react';
 
 type LabelProps = {
   className?: string;
+  children?: ReactNode;
 };
 
-export const Label: React.FC<LabelProps> = ({ className = '', children }) => {
+export const Label = ({ className = '', children }: LabelProps) => {
   return (
     <span
       className={classNames(

@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-no-useless-fragment */
-import React from 'react';
+import { ReactNode } from 'react';
 
 import { AppState, useAppSelector } from '@bloggo/redux';
 
@@ -7,10 +7,11 @@ import { Link } from './link.component';
 
 type AppCheckProps = {
   // managed by Next
-  fallback?: React.ReactNode;
+  fallback?: ReactNode;
+  children: ReactNode;
 };
 
-export const AuthCheck: React.FC<AppCheckProps> = ({ children, fallback }) => {
+export const AuthCheck = ({ children, fallback }: AppCheckProps) => {
   const { user } = useAppSelector((state: AppState) => state.user);
   return user ? (
     <>{children}</>
