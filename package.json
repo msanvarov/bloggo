@@ -4,8 +4,8 @@
   "license": "MIT",
   "author": {
     "name": "Sal Anvarov",
-    "email": "sal@dezzign.studio",
-    "url": "https://dezzign.studio"
+    "email": "msalanvarov@gmail.com",
+    "url": "https://www.sal-anvarov.com"
   },
   "scripts": {
     "start": "nx serve",
@@ -16,12 +16,14 @@
   "dependencies": {
     "@glidejs/glide": "^3.5.2",
     "@headlessui/react": "^1.4.3",
+    "@nx/node": "16.7.4",
     "@reduxjs/toolkit": "1.9.3",
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.4.0",
     "@tailwindcss/line-clamp": "^0.3.1",
     "@tailwindcss/typography": "^0.5.0",
     "@trivago/prettier-plugin-sort-imports": "^3.1.1",
+    "@vercel/analytics": "^1.0.2",
     "autoprefixer": "10.4.13",
     "classnames": "^2.3.1",
     "core-js": "^3.6.5",
@@ -50,8 +52,7 @@
     "remark-gfm": "^3.0.1",
     "tailwindcss": "3.2.7",
     "tslib": "^2.0.0",
-    "yup": "^0.32.11",
-    "@nx/node": "16.7.4"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@nrwl/js": "16.7.4",
@@ -59,6 +60,7 @@
     "@nx/eslint-plugin": "16.7.4",
     "@nx/jest": "16.7.4",
     "@nx/linter": "16.7.4",
+    "@nx/next": "16.7.4",
     "@nx/react": "16.7.4",
     "@nx/web": "16.7.4",
     "@nx/workspace": "16.7.4",
@@ -92,8 +94,7 @@
     "sass": "1.55.0",
     "ts-jest": "29.1.1",
     "ts-node": "10.9.1",
-    "typescript": "5.1.6",
-    "@nx/next": "16.7.4"
+    "typescript": "5.1.6"
   },
   "peerDependencies": {
     "postcss": "^8.4.5"

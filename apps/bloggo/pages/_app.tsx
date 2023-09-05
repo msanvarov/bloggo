@@ -1,4 +1,5 @@
 import '@glidejs/glide/dist/css/glide.core.min.css';
+import { Analytics } from '@vercel/analytics/react';
 import 'moment-timezone';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -8,8 +9,7 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
-import { store } from '@bloggo/redux';
-import { persistor } from '@bloggo/redux';
+import { persistor, store } from '@bloggo/redux';
 import { Footer, Header, Loader } from '@bloggo/ui';
 
 import '../styles/styles.scss';
@@ -32,6 +32,7 @@ const CustomApp: React.FC<AppProps> = ({ Component, pageProps }) => {
           <Component {...pageProps} />
           <Footer />
         </main>
+        <Analytics />
       </PersistGate>
     </Provider>
   );
