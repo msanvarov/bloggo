@@ -1,9 +1,9 @@
 <h1 align="center">Bloggo - A Medium Clone built with Next.js and Firebase</h1>
 
 <p align="center">
-  <a href="https://nextjs.org/" target="blank"><img src="assets/nextjs.png" width="100" alt="next.js" /></a>
+  <a href="https://nextjs.org/" target="blank"><img src="assets/nextjs.svg" width="100" alt="next.js" /></a>
   <a href="https://firebase.google.com/" target="blank"><img src="https://www.gstatic.com/devrel-devsite/prod/vbad4fd6eb290ad214822e7a397f826be8dbcc36ca2a922ba48f41fb14286829c/firebase/images/lockup.svg" width="200" alt="firebase" /></a>
-  <a href="https://medium.com/" target="blank"><img src="assets/medium.png" width="100" alt="realworld" /></a>
+  <a href="https://medium.com/" target="blank"><img src="assets/medium.webp" width="100" alt="realworld" /></a>
 </p>
 
 <p align="center">
