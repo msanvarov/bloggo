@@ -1,22 +1,27 @@
 {
-  "root": "apps/bloggo",
+  "name": "bloggo",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/bloggo",
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nrwl/next:build",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@nx/next:build",
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
-        "root": "apps/bloggo",
         "outputPath": "dist/apps/bloggo"
       },
       "configurations": {
-        "production": {}
+        "production": {},
+        "development": {
+          "outputPath": "apps/bloggo"
+        }
       }
     },
     "serve": {
-      "executor": "@nrwl/next:server",
+      "executor": "@nx/next:server",
       "options": {
         "buildTarget": "bloggo:build",
         "dev": true
@@ -25,28 +30,39 @@
         "production": {
           "buildTarget": "bloggo:build:production",
           "dev": false
+        },
+        "development": {
+          "buildTarget": "bloggo:build:development",
+          "dev": true
         }
-      }
+      },
+      "defaultConfiguration": "development"
     },
     "export": {
-      "executor": "@nrwl/next:export",
+      "executor": "@nx/next:export",
       "options": {
         "buildTarget": "bloggo:build:production"
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/bloggo"],
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/apps/bloggo"
+      ],
       "options": {
-        "jestConfig": "apps/bloggo/jest.config.js",
+        "jestConfig": "apps/bloggo/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/bloggo/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "apps/bloggo/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     }
   },
