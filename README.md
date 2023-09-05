@@ -21,12 +21,7 @@ Table of Contents:
 2. [Prerequisites](#%EF%B8%8F-prerequisites)
 3. [Deployment](#-deployment)
 4. [Environment Configuration](#-environment-configuration)
-5. [Choosing a Web Framework](#-choosing-a-web-framework)
-6. [HTTP2](#-http2)
-7. [Choosing a Database](#-choosing-a-database)
-8. [Testing](#-testing)
-9. [TypeDocs](#-typedocs)
-10. [Logs](#-logs)
+5. [Testing](#-testing)
 
 🔎 This repo was created with [Nx](https://nx.dev/).
 
