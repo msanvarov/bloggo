@@ -1,135 +1,135 @@
-@import "tailwind";
+@import 'tailwind';
 
-@import "fonts";
-@import "theme-variables";
-@import "polyfills";
+@import 'fonts';
+@import 'polyfills';
+@import 'theme-variables';
 
 .root {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .nc-will-change-transform {
-    will-change: transform;
+  will-change: transform;
 }
 .nc-will-change-top {
-    will-change: top;
+  will-change: top;
 }
 
 .nc-card-title {
-    @apply transition-colors  hover:text-primary-900 dark:hover:text-primary-300 duration-75;
+  @apply transition-colors  hover:text-primary-900 dark:hover:text-primary-300 duration-75;
 }
 
 .nc-PostCardCommentBtn,
 .bookmark-post-button,
 .like-post-button,
 .nc-CommentCardLikeReply > button {
-    &:hover {
-        span {
-            color: inherit;
-        }
+  &:hover {
+    span {
+      color: inherit;
     }
+  }
 }
 
 .react-tabs__tab--selected {
-    button {
-        @apply bg-primary-500 text-secondary-50;
-    }
+  button {
+    @apply bg-primary-500 text-secondary-50;
+  }
 }
 
 .nc-box-has-hover {
-    @apply bg-white rounded-3xl border border-neutral-200 border-opacity-70 hover:bg-neutral-50 hover:shadow-xl hover:border-transparent transition-shadow;
+  @apply bg-white rounded-3xl border border-neutral-200 border-opacity-70 hover:bg-neutral-50 hover:shadow-xl hover:border-transparent transition-shadow;
 }
 
 .nc-dark-box-bg-has-hover {
-    @apply dark:bg-neutral-800 dark:bg-opacity-30  dark:border dark:border-neutral-700 dark:hover:bg-neutral-800 dark:hover:shadow-2xl;
+  @apply dark:bg-neutral-800 dark:bg-opacity-30  dark:border dark:border-neutral-700 dark:hover:bg-neutral-800 dark:hover:shadow-2xl;
 }
 
 .nc-dark-box-bg {
-    @apply dark:bg-neutral-800 dark:bg-opacity-30  dark:border dark:border-neutral-700 dark:shadow-2xl;
+  @apply dark:bg-neutral-800 dark:bg-opacity-30  dark:border dark:border-neutral-700 dark:shadow-2xl;
 }
 
 .nc-origin-100 {
-    transform-origin: 100% 50% 0px;
+  transform-origin: 100% 50% 0px;
 }
 .nc-origin-50 {
-    transform-origin: 50% 50% 0px;
+  transform-origin: 50% 50% 0px;
 }
 
 .nc-PostFeaturedMedia {
-    .glide__bullet--active {
-        @apply bg-white bg-opacity-100;
-    }
+  .glide__bullet--active {
+    @apply bg-white bg-opacity-100;
+  }
 }
 
 .lds-ellipsis {
-    display: inline-block;
-    position: relative;
-    width: 80px;
-    height: 80px;
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
 }
 .lds-ellipsis div {
-    position: absolute;
-    top: 33px;
-    width: 13px;
-    height: 13px;
-    border-radius: 50%;
-    background: #fff;
-    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #fff;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
 }
 .lds-ellipsis div:nth-child(1) {
-    left: 8px;
-    animation: lds-ellipsis1 0.6s infinite;
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
 }
 .lds-ellipsis div:nth-child(2) {
-    left: 8px;
-    animation: lds-ellipsis2 0.6s infinite;
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
 }
 .lds-ellipsis div:nth-child(3) {
-    left: 32px;
-    animation: lds-ellipsis2 0.6s infinite;
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
 }
 .lds-ellipsis div:nth-child(4) {
-    left: 56px;
-    animation: lds-ellipsis3 0.6s infinite;
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
 }
 @keyframes lds-ellipsis1 {
-    0% {
-        transform: scale(0);
-    }
-    100% {
-        transform: scale(1);
-    }
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 @keyframes lds-ellipsis3 {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(0);
-    }
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
 }
 @keyframes lds-ellipsis2 {
-    0% {
-        transform: translate(0, 0);
-    }
-    100% {
-        transform: translate(24px, 0);
-    }
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
 }
 .nc-animation-spin {
-    animation: myspin 20s linear infinite;
-    animation-play-state: paused;
+  animation: myspin 20s linear infinite;
+  animation-play-state: paused;
 
-    &.playing {
-        animation-play-state: running;
-    }
+  &.playing {
+    animation-play-state: running;
+  }
 
-    @keyframes myspin {
-        from {
-            transform: rotate(0deg);
-        }
-        to {
-            transform: rotate(360deg);
-        }
+  @keyframes myspin {
+    from {
+      transform: rotate(0deg);
     }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 }

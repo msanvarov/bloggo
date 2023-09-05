@@ -1,17 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 html body {
-    @apply font-body antialiased;
+  @apply font-body antialiased;
 }
 
 h1,
 h2,
 h3,
 h4 {
-    @apply font-display;
+  @apply font-display;
 }
 
 :root {
-    --font-display: Poppins;
-    --font-body: Poppins;
+  --font-display: Poppins;
+  --font-body: Poppins;
 }
