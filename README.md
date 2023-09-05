@@ -1,7 +1,7 @@
 <h1 align="center">Bloggo - Medium Clone</h1>
 
 <p align="center">
-  <a href="https://nextjs.org/" target="blank"><img src="assets/bloggo.png" width="400" alt="Bloggo" /></a>
+  <a href="https://nextjs.org/" target="blank"><img src="assets/bloggo.png" width="600" alt="Bloggo" /></a>
 </p>
 
 <p align="center">
