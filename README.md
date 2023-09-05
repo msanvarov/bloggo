@@ -9,8 +9,8 @@ A full-stack <a href="https://nodejs.org" target="blank">Node.js</a> application
 </p>
 
 <p align="center">
-	<a href="https://www.npmjs.com/~nestjscore"><img src="https://img.shields.io/badge/license-MIT-green" alt="Package License" /></a>
-	<a href="https://travis-ci.org/msanvarov/nest-rest-typeorm-boilerplate"><img src="https://therealsujitk-vercel-badge.vercel.app/?app=bloggo" alt="Vercel" /></a>
+	<a href="https://github.com/msanvarov/bloggo/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-green" alt="Package License" /></a>
+	<a href="https://vercel.com/msanvarov/bloggo/"><img src="https://therealsujitk-vercel-badge.vercel.app/?app=bloggo" alt="Vercel" /></a>
 </p>
 
 Table of Contents:
@@ -55,7 +55,7 @@ This application was built to mimic the functionalities of the Medium blogging w
 
 - Create a **.env file** via the `cp apps/bloggo/.env.example apps/bloggo/.env` command and replace the existing environment variable placeholders with valid responses.
 
-- Start the api in development mode by using `npm run start` (the api will be exposed on http://localhost:3333, and the **default ui** will be exposed on http://localhost:4200).
+- Start the api in development mode by using `npm run start` (the **ui** will be exposed on http://localhost:4200).
 
 #### Deploying with Docker 🐳
 
