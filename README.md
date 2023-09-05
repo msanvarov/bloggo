@@ -76,21 +76,7 @@ By default, the application comes with a config module that can read in every en
 
 **APP_ENV** - the application environment to execute as, either in development or production. Determines the type of logging options to utilize. Options: `development` or `production`.
 
-**FIREBASE_API_KEY** - the key to authenticate against Firebase.
-
-**FIREBASE_AUTH_DOMAIN** - the domain to authenticate against Firebase.
-
-**DB_TYPE** - the type of [database connection to use](https://github.com/typeorm/typeorm/blob/master/docs/connection-options.md).
-
-**FIREBASE_PROJECT_ID** - the project id to authenticate against Firebase.
-
-**FIREBASE_STORAGE_BUCKET** - the storage bucket to authenticate against Firebase.
-
-**FIREBASE_MESSAGING_SENDER_ID** - the messaging sender id to authenticate against Firebase.
-
-**FIREBASE_APP_ID** - the app id to authenticate against Firebase.
-
-**FIREBASE_MEASUREMENT_ID** - the measurement id to authenticate against Firebase.
+**FIREBASE_***  - the firebase config details that can be fetched when creating the  [SDK for the app](https://firebase.google.com/docs/web/setup).
 
 ---
 
