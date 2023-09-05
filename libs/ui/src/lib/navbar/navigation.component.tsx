@@ -39,8 +39,8 @@ export const navigationOptions: INavEntry[] = [
   },
   {
     id: generateUUID(),
-    href: '/contact',
-    name: 'Contact',
+    href: 'https://github.com/msanvarov/bloggo',
+    name: 'Github',
     restriction: 'public',
   },
 ];

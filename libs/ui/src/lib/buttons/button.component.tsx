@@ -61,8 +61,8 @@ export const Button = ({
         {children || `External Link`}
       </a>
     ) : (
-      <Link {...{ href, onClick }}>
-        <a className={classes}>{children || `Link`}</a>
+      <Link {...{ href, onClick }} className={classes}>
+        {children || `Link`}
       </Link>
     );
   }

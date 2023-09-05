@@ -32,31 +32,28 @@ export const MobileNavbar: React.FC<MobileNavbarProps> = ({ onClose }) => {
               href={{
                 pathname: i.href || undefined,
               }}
+              className={classNames(
+                'flex px-4 py-2.5 text-neutral-900 dark:text-neutral-200 text-sm font-medium rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 mt-[2px]',
+                { 'text-secondary': router.pathname === i.href },
+              )}
             >
-              <a
-                className={classNames(
-                  'flex px-4 py-2.5 text-neutral-900 dark:text-neutral-200 text-sm font-medium rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-800 mt-[2px]',
-                  { 'text-secondary': router.pathname === i.href },
-                )}
-              >
-                <span onClick={onClose}>{i.name}</span>
-                {i.children && (
-                  <span
-                    className="block flex-grow"
-                    onClick={(e) => e.preventDefault()}
+              <span onClick={onClose}>{i.name}</span>
+              {i.children && (
+                <span
+                  className="block flex-grow"
+                  onClick={(e) => e.preventDefault()}
+                >
+                  <Disclosure.Button
+                    as="span"
+                    className="flex justify-end flex-grow"
                   >
-                    <Disclosure.Button
-                      as="span"
-                      className="flex justify-end flex-grow"
-                    >
-                      <FiChevronDown
-                        className="ml-2 h-4 w-4 text-neutral-500"
-                        aria-hidden="true"
-                      />
-                    </Disclosure.Button>
-                  </span>
-                )}
-              </a>
+                    <FiChevronDown
+                      className="ml-2 h-4 w-4 text-neutral-500"
+                      aria-hidden="true"
+                    />
+                  </Disclosure.Button>
+                </span>
+              )}
             </Link>
             {i.children && (
               <Disclosure.Panel>{renderChildMenu(i)}</Disclosure.Panel>
@@ -115,34 +112,31 @@ export const MobileNavbar: React.FC<MobileNavbarProps> = ({ onClose }) => {
                       href={{
                         pathname: navigationEntry.href || undefined,
                       }}
+                      className={classNames(
+                        'flex w-full items-center py-2.5 px-4 font-medium uppercase tracking-wide text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg',
+                        {
+                          'text-secondary':
+                            navigationEntry.href === router.asPath,
+                        },
+                      )}
                     >
-                      <a
-                        className={classNames(
-                          'flex w-full items-center py-2.5 px-4 font-medium uppercase tracking-wide text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800 rounded-lg',
-                          {
-                            'text-secondary':
-                              navigationEntry.href === router.asPath,
-                          },
-                        )}
-                      >
-                        <span onClick={onClose}>{navigationEntry.name}</span>
-                        {navigationEntry.children && (
-                          <span
-                            className="block flex-grow"
-                            onClick={(e) => e.preventDefault()}
+                      <span onClick={onClose}>{navigationEntry.name}</span>
+                      {navigationEntry.children && (
+                        <span
+                          className="block flex-grow"
+                          onClick={(e) => e.preventDefault()}
+                        >
+                          <Disclosure.Button
+                            as="span"
+                            className="flex justify-end flex-grow"
                           >
-                            <Disclosure.Button
-                              as="span"
-                              className="flex justify-end flex-grow"
-                            >
-                              <FiChevronDown
-                                className="ml-2 h-4 w-4 text-neutral-500"
-                                aria-hidden="true"
-                              />
-                            </Disclosure.Button>
-                          </span>
-                        )}
-                      </a>
+                            <FiChevronDown
+                              className="ml-2 h-4 w-4 text-neutral-500"
+                              aria-hidden="true"
+                            />
+                          </Disclosure.Button>
+                        </span>
+                      )}
                     </Link>
                     {navigationEntry.children && (
                       <Disclosure.Panel>

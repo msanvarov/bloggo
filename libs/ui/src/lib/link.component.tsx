@@ -21,14 +21,13 @@ export const Link = ({
   const router = useRouter();
 
   return (
-    <NextLink {...rest}>
-      <a
-        className={classNames(colorClass, className, {
-          [activeClassName]: router.asPath === rest.href,
-        })}
-      >
-        {children}
-      </a>
+    <NextLink
+      {...rest}
+      className={classNames(colorClass, className, {
+        [activeClassName]: router.asPath === rest.href,
+      })}
+    >
+      {children}
     </NextLink>
   );
 };

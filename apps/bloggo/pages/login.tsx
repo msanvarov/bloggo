@@ -72,7 +72,7 @@ const LoginPage: React.FC = () => {
     values,
   } = useFormik({
     validationSchema: LoginSchema,
-    initialValues: { email: '', password: '' },
+    initialValues: { email: 'mcoute@grr.la', password: 'Mcoute25011313' },
     onSubmit: async ({ email, password }) => {
       try {
         login(email, password);
@@ -162,11 +162,10 @@ const LoginPage: React.FC = () => {
                 type="email"
                 id="email"
                 name="email"
-                placeholder="sal@dezzign.studio"
-                className={classNames(
-                  'mt-1',
-                  'invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500',
-                )}
+                className={classNames('mt-1', {
+                  'invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500':
+                    errors.email,
+                })}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.email}
@@ -199,10 +198,11 @@ const LoginPage: React.FC = () => {
                 type={revealPassword ? 'text' : 'password'}
                 id="password"
                 name="password"
-                className={classNames(
-                  'mt-1',
-                  'invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500',
-                )}
+                className={classNames('mt-1', {
+                  'invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500':
+                    errors.password,
+                })}
+                placeholder="********"
                 onInput={() => setFieldTouched('password', true, true)}
                 onChange={handleChange}
                 onBlur={handleBlur}

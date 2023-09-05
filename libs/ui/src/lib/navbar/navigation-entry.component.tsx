@@ -145,26 +145,23 @@ export const NavigationEntry: React.FC<NavigationEntryProps> = ({
         href={{
           pathname: entry.href || undefined,
         }}
+        target={entry.targetBlank ? '_blank' : undefined}
+        rel="noopener noreferrer"
+        className={classNames(
+          'flex items-center font-normal text-neutral-6000 dark:text-neutral-300 py-2 px-4 rounded-md hover:text-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 dark:hover:text-neutral-200',
+          {
+            '!font-semibold !text-neutral-700 dark:!text-neutral-200':
+              entry.href === router.asPath,
+          },
+        )}
       >
-        <a
-          target={entry.targetBlank ? '_blank' : undefined}
-          rel="noopener noreferrer"
-          className={classNames(
-            'flex items-center font-normal text-neutral-6000 dark:text-neutral-300 py-2 px-4 rounded-md hover:text-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-800 dark:hover:text-neutral-200',
-            {
-              '!font-semibold !text-neutral-700 dark:!text-neutral-200':
-                entry.href === router.asPath,
-            },
-          )}
-        >
-          {entry.name}
-          {entry.type && (
-            <FiChevronDown
-              className="ml-2 h-4 w-4 text-neutral-500"
-              aria-hidden="true"
-            />
-          )}
-        </a>
+        {entry.name}
+        {entry.type && (
+          <FiChevronDown
+            className="ml-2 h-4 w-4 text-neutral-500"
+            aria-hidden="true"
+          />
+        )}
       </Link>
     );
   };
@@ -175,28 +172,25 @@ export const NavigationEntry: React.FC<NavigationEntryProps> = ({
         href={{
           pathname: entry.href || undefined,
         }}
+        className={classNames(
+          'inline-flex items-center text-sm xl:text-base font-normal text-neutral-700 dark:text-neutral-300 py-2 px-4 xl:px-5 rounded-full hover:text-neutral-900 hover:bg-neutral-100 dark:hover:bg-neutral-800 dark:hover:text-neutral-200',
+          {
+            '!font-semibold !text-neutral-900 bg-neutral-100 dark:bg-neutral-800 dark:!text-neutral-100':
+              entry.href === router.asPath ||
+              entry.href.split('/')[1] ===
+                router.asPath.split('/').slice(-2)[0],
+          },
+        )}
+        target={entry.targetBlank ? '_blank' : undefined}
+        rel="noopener noreferrer"
       >
-        <a
-          className={classNames(
-            'inline-flex items-center text-sm xl:text-base font-normal text-neutral-700 dark:text-neutral-300 py-2 px-4 xl:px-5 rounded-full hover:text-neutral-900 hover:bg-neutral-100 dark:hover:bg-neutral-800 dark:hover:text-neutral-200',
-            {
-              '!font-semibold !text-neutral-900 bg-neutral-100 dark:bg-neutral-800 dark:!text-neutral-100':
-                entry.href === router.asPath ||
-                entry.href.split('/')[1] ===
-                  router.asPath.split('/').slice(-2)[0],
-            },
-          )}
-          target={entry.targetBlank ? '_blank' : undefined}
-          rel="noopener noreferrer"
-        >
-          {entry.name}
-          {entry.type && (
-            <FiChevronDown
-              className="ml-1 -mr-1 h-4 w-4 text-neutral-400"
-              aria-hidden="true"
-            />
-          )}
-        </a>
+        {entry.name}
+        {entry.type && (
+          <FiChevronDown
+            className="ml-1 -mr-1 h-4 w-4 text-neutral-400"
+            aria-hidden="true"
+          />
+        )}
       </Link>
     );
   };
